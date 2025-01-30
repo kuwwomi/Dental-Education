@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <title>Login -> Sign Up</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body{
+    background-color: #dfe9f5;
+    /* background: linear-gradient(to right, #e2e2e2, #c9d6ff); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.container{
+    background-color: #fff;
+    border-radius: 10px; /*ukuran melengkung */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    position: relative;
+    overflow: hidden;
+    width: 1200px;
+    max-width: 100%;
+    min-height: 650px;
+}
+
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 24px !important; /* Ubah ukuran font */
+    color: #004aad;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.back-button:hover {
+    color: #002f73;
+}
+
+.back-button i {
+    font-size: inherit !important; /* Ikuti ukuran yang ditetapkan pada parent */
+}
+
+
+.container h1{
+    color: #004aad;
+}
+
+.container p{
+    font-size: 20px;
+    line-height: 20px;
+    letter-spacing: 0.3px;
+    margin: 20px 0;
+}
+
+.container span{
+    font-size: 12px;
+}
+
+.container a{
+    color: #004aad;
+    font-size: 13px;
+    text-decoration: none;
+    margin: 15px 0 10px;
+}
+
+.container button{
+    background-color: #004aad;
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 45px;
+    border: 3px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.container button.hidden{
+    background-color: transparent;
+    border-color: #fff;
+}
+
+.container form{
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    height: 100%;
+}
+
+.container input{
+    background-color: #eee;
+    border: none;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 8px;
+    width: 100%;
+    outline: none;
+}
+
+.container label {
+    display: block;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 5px;
+    font-weight: 500;
+    font-size: 14px;
+    color: #004aad;
+}
+
+.form-container{
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+}
+
+.sign-in{
+    left: 0;
+    width: 50%;
+    z-index: 2;
+}
+
+.container.active .sign-in{
+    transform: translateX(100%);
+}
+
+.sign-up{
+    left: 0;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
+}
+
+.container.active .sign-up{
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+    animation: move 0.6s;
+}
+
+@keyframes move{
+    0%, 49.99%{
+        opacity: 0;
+        z-index: 1;
+    }
+    50%, 100%{
+        opacity: 1;
+        z-index: 5;
+    }
+}
+
+/* Bagian untuk membuat garis biru miring */
+.toggle-container{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: all 0.0s ease-in-out;
+    border-radius: 0 0 0 0;
+    z-index: 1000;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 15% 100%); /*LOGIN SLIDE*/
+}
+
+.container.active .toggle-container{
+    transform: translateX(-100%);
+    border-radius: 0 0 0 0;
+    clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%); /*SIGN UP SLIDE*/
+}
+
+.toggle{
+    background-color: #004aad;
+    height: 100%;
+    background: linear-gradient(to right, #004aad);
+    color: #fff;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+    clip-path: inherit;
+}
+
+.container.active .toggle{
+    transform: translateX(50%);
+}
+
+.toggle-panel{
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 30px;
+    text-align: center;
+    top: 0;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+}
+
+.toggle-left{
+    transform: translateX(-200%);
+}
+
+.toggle-left .logo-image {
+    width: 250px;
+    height: auto;
+}
+
+.container.active .toggle-left{
+    transform: translateX(0);
+}
+
+.toggle-right{
+    right: 0;
+    transform: translateX(0);
+}
+
+.toggle-right .logo-image {
+    width: 250px;
+    height: auto;
+}
+
+.container.active .toggle-right{
+    transform: translateX(200%);
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.form-row div {
+    width: 48%; /* Adjusts width of the first name and last name fields to share the same width as other fields */
+}
+
+input {
+    background-color: #eee;
+    border: none;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 8px;
+    width: 100%; /* Ensure input fields fill available space */
+    outline: none;
+}
+
+.swal2-confirm {
+    background-color: #004aad !important; /* Warna tombol */
+    color: white !important; /* Warna teks tombol */
+    font-size: 16px !important; /* Ukuran font tombol */
+    padding: 10px 20px !important; /* Ukuran padding tombol */
+    border-radius: 8px !important; /* Radius untuk melengkungkan tombol */
+    border: none !important; /* Menghapus border */
+    font-weight: bold !important; /* Membuat teks tebal */
+}
+
+.swal2-title {
+    font-size: 24px !important; /* Ukuran font judul */
+    color: #004aad !important; /* Warna teks judul */
+}
+
+.swal2-html-container {
+    font-size: 18px !important; /* Ukuran font isi pesan */
+    color: #333 !important; /* Warna teks isi pesan */
+}
+
+                /* Responsiveness for smaller screens */
+                @media (max-width: 768px) {
+        nav {
+            width: 70px; /* Smaller width for navigation */
+        }
+
+        nav:hover {
+            width: 180px; /* Adjust width when hovered */
+        }
+
+        .container {
+            margin-left: 20px;
+            margin-right: 20px;
+            padding: 20px; /* Adjust padding for smaller screens */
+            transform: translate(0); /* Center the container */
+        }
+
+        h1 {
+            font-size: 32px; /* Smaller font size for headings */
+        }
+
+        .input-group input, .grid-item input {
+            font-size: 14px; /* Reduce font size for inputs */
+            padding: 8px 8px; /* Adjust padding */
+        }
+
+        .button-group {
+            flex-direction: column; /* Stack buttons vertically */
+            align-items: stretch;
+        }
+
+        button {
+            width: 100%; /* Full width buttons */
+            margin: 10px 0; /* Add spacing between buttons */
+        }
+    }
+
+    @media (max-width: 480px) {
+        nav {
+            width: 60px; /* Even smaller width for very small screens */
+        }
+
+        nav:hover {
+            width: 150px; /* Adjust hover width */
+        }
+
+        .container {
+            padding: 15px; /* Smaller padding for very small screens */
+        }
+
+        h1 {
+            font-size: 24px; /* Further reduce heading size */
+        }
+
+        .input-group input, .grid-item input {
+            font-size: 12px; /* Smaller font size for inputs */
+        }
+    }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container" id="container">
+        <div class="form-container sign-up">
+
+            <form>
+                <h1>Register for Admin</h1><br>
+                <label for="password1">Password</label>
+                <input type="password" id="passwordAdmin" placeholder="" required>
+                <label for="password">Confirm password</label>
+                <input type="password" id="confirmPassword" placeholder="" required>
+                <label for="secret">Secret Key</label>
+                <textarea
+                    id="secretKey"
+                    placeholder="Enter your secret key here..."
+                    required
+                    style="width: 100%; padding: 10px; box-sizing: border-box; resize: none; overflow: hidden;">
+                </textarea>
+                <button type="button" id="registerForm">Creat Account</button>
+            </form>
+        </div>
+        <div class="form-container sign-in">
+            <a href="LandingPage.html" class="back-button"><i class="fa-solid fa-circle-arrow-left"></i></a>
+            <form>
+                <h1>Login For Admin</h1><br>
+                <label for="email2">Email</label>
+                <input type="email" id="emailInput"placeholder="">
+                <label for="password2">Password</label>
+                <input type="password" id="passwordInput" placeholder="">
+                <button type="button" id="loginForm">LOGIN</button>
+            </form>
+        </div>
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <img src="/Asset/Logo Home.png" alt="Logo Home" class="logo-image">
+                    <p>Already Signed Up?<br><br>
+                        Login in to your account <br><br>
+                        so you can continue</p>
+                    <button class="hidden" id="login">Sign In</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <img src="/Asset/Logo Home.png" alt="Logo Home" class="logo-image">
+                    <!-- <p>Don't Have an Account Yet?<br><br>
+                    Let's get you all set up you can start<br><br>
+                    your first onboarding experience
+                    </p> -->
+                    <!-- <button class="hidden" id="register">Sign Up</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <script type="module">
+     
+        import { registerUser, loginUser } from './service.js';
+
+        const textarea = document.getElementById('secretKey');
+
+        textarea.addEventListener('input', function () {
+            // Reset height to allow shrinking
+            this.style.height = 'auto';
+            // Adjust height to fit content
+            this.style.height = this.scrollHeight + 'px';
+        });
+
+        const registerForm = document.querySelector('#registerForm');
+        registerForm.addEventListener('click', async (event) => {
+        event.preventDefault();
+
+        const firstName = document.querySelector('#firstNameInput').value.trim();
+        const lastName = document.querySelector('#lastNameInput').value.trim();
+        const email = document.querySelector('#emailUser').value.trim();
+        const phone = document.querySelector('#phoneUser').value.trim();
+        const password = document.querySelector('#passwordUser').value.trim();
+
+        // Validasi input
+            if (!firstName || !lastName || !email || !phone || !password) {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Incomplete Form",
+                    text: "All fields are required. Please fill in all fields.",
+                    confirmButtonText: "Ok",
+                });
+                return;
+            }
+
+
+            try {
+                // Panggil fungsi registerUser
+                const {data} = await registerUser(firstName, lastName, email, phone, password);
+                console.log(data)
+                if (data) {
+                    // Registrasi berhasil
+                    Swal.fire({
+                        icon: "success",
+                        title: "Registration Successful",
+                        text: "Your account has been created successfully!",
+                        confirmButtonText: "Ok",
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Redirect ke halaman login
+                            window.location.href = "regist.html";
+                        }
+                    });
+                } else {
+                // Jika registrasi gagal (misalnya, email sudah digunakan)
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Registration Failed",
+                        text: "Something went wrong. Please try again.",
+                        confirmButtonText: "Ok",
+                    });
+                }
+            }catch (error) {
+                console.log(error.message)
+
+                if (error != "") {
+                    error.message= error.message.replace("Error: ", "");
+                }
+
+                console.log(error.message)
+
+                if (error.message === "User Already Exist") {
+                    Swal.fire({
+                        icon: "warning",
+                        title: "Registration Failed",
+                        text: "This email is already in use. Please use a different email.",
+                        confirmButtonText: "Ok",
+                    });
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Error",
+                        text: "An error occurred during registration. Please try again later.",
+                        confirmButtonText: "Ok",
+                    });
+                }
+            }
+        });  
+
+
+
+        // Pastikan `loginForm` terhubung dengan benar ke elemen di DOM
+        const loginForm = document.querySelector('#loginForm');
+        if  (!loginForm) {
+            console.error("loginForm element not found!");
+        }
+
+        loginForm.addEventListener('click', async (e) => {
+            e.preventDefault();
+
+            // Ambil nilai email dan password
+            const emailInput = document.querySelector('#emailInput').value;
+            const passwordInput = document.querySelector('#passwordInput').value;
+
+            if (!emailInput || !passwordInput) {
+                console.error("Email or Password input element not found!");
+                return;
+            }
+        
+            try {
+                const response = await loginUser(emailInput, passwordInput); // Pastikan `loginUser` didefinisikan
+              
+                    if (response != "") {
+                        Swal.fire({
+                            icon: "success",
+                            title: "Login Successful",
+                            text: "Welcome back! You are now logged in.",
+                            confirmButtonText: "Ok",
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = "Feature.html"; // Redirect ke halaman utama
+                            }
+                        });
+                        localStorage.setItem("auth-token", response)
+                    }
+            } catch (error) {
+                if (error.message == "Wrong Password") {
+                    Swal.fire({
+                            icon: "error",
+                            title: "Invalid Login",
+                            text: "Incorrect email or password. Please try again.",
+                            confirmButtonText: "Ok",
+                        });
+                }else {
+                    Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: "An error occurred while trying to log in. Please try again later.",
+                    confirmButtonText: "Ok",
+                }); 
+                }
+             
+            }
+        });
+
+
+        const container = document.getElementById('container');
+        const registerBtn = document.getElementById('register');
+        const loginBtn = document.getElementById('login');
+
+        registerBtn.addEventListener('click', () => {
+            container.classList.add("active");
+        });
+
+        loginBtn.addEventListener('click', () => {
+            container.classList.remove("active");
+        });
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Popup user</title>
+<style>
+  /* Style for the overlay */
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+
+  /* Style for the popup container */
+  .popup {
+    position: relative;
+    width: 300px;
+    background: #fff;
+    padding: 40px 50px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    text-align: center;
+  }
+
+  /* Style for the close button */
+  .popup .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    color: black;
+  }
+
+  .popup .close:hover {
+    color: #004AAD;
+  }
+
+  /* Style for the image */
+  .popup img {
+    max-width: 20%;
+    height: auto;
+    margin: 15px 0;
+  }
+
+  /* Style for h2 and p */
+  .popup h2 {
+    font-size: 24px;
+    color: #004AAD;
+    margin-bottom: 10px;
+  }
+
+  .popup p {
+    font-size: 16px;
+    color: #004AAD;
+    margin-bottom: 20px;
+  }
+
+  /* Style for buttons */
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+/* 
+  .button {
+    width: 45%;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+  } */
+
+  /* .login-btn {
+    background-color: #004AAD;
+    color: white;
+  }
+
+  .cancel-btn {
+    background-color: #004AAD;
+    color: white;
+  } */
+</style>
+</head>
+<body>
+
+<!-- Popup Overlay -->
+<div class="overlay" id="popupOverlay">
+  <div class="popup">
+    <!-- Close Button -->
+    <span class="close" onclick="closePopup()">×</span>
+    
+    <!-- Popup Content -->
+    <img src="/Asset/error.png" alt="Login Image">
+    <h2>User Already Exists !</h2>
+    <p>Silahkan Coba Lagi.</p>
+    
+    <!-- Buttons Container -->
+    <!-- <div class="button-container">
+      <a href="Logsig.html" class="button login-btn">Login</a>
+      <a href="Logsig.html" class="button cancel-btn" onclick="closePopup()">Register</a>
+    </div>
+  </div>
+</div> -->
+
+<script>
+  // Function to close the popup
+  function closePopup() {
+    document.getElementById('popupOverlay').style.display = 'none';
+  }
+</script>
+
+</body>
+</html>

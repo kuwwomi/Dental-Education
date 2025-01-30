@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pharmacology Mark</title>
+    <!-- <link rel="stylesheet" href="Pharmacology.css"> -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        outline: none;
+        border: none;
+        text-decoration: none;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        background: #dfe9f5;
+      }
+
+      nav {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        height: 100%;
+        left: 0;
+        background: white;
+        width: 90px;
+        overflow: hidden;
+        transition: width 0.2s linear;
+        box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+        z-index: 2;
+      }
+
+      .logo {
+        text-align: center;
+        display: flex;
+        transition: all 0.5s ease;
+        margin: 10px 0 0 10px;
+      }
+
+      .logo img {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+      }
+
+      .logo span {
+        font-weight: bold;
+        padding: 0px;
+        font-size: 18px;
+        text-transform: uppercase;
+      }
+
+      a {
+        position: relative;
+        color: #004aad;
+        font-size: 14px;
+        display: table;
+        width: 300px;
+        padding: 10px;
+      }
+
+      .fas {
+        position: relative;
+        width: 70px;
+        height: 40px;
+        top: 14px;
+        font-size: 20px;
+        text-align: center;
+      }
+
+      .nav-item {
+        position: relative;
+        top: 12px;
+        margin-left: 25px;
+      }
+
+      .nav-item2 {
+        position: relative;
+        top: 12px;
+        margin-left: 10px;
+      }
+
+      a:hover {
+        background: #eee;
+      }
+
+      nav:hover {
+        width: 280px;
+        transition: all 0.5s ease;
+      }
+
+      .logout {
+        position: absolute;
+        bottom: 0;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin-top: 50px;
+        margin-left: 30px;
+        margin-right: 70px;
+        padding: 100px;
+        display: flex;
+        flex-direction: column;
+        border-radius: 10px;
+        transform: translate(140px);
+        background-color: white;
+        align-items: stretch;
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 48px;
+        color: #004aad;
+        margin-bottom: 40px;
+      }
+
+      .input-group {
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      /* .input-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+    text-align: left;
+} */
+
+      .input-group input {
+        width: 100%;
+        padding: 10px 10px;
+        border: 2px solid #28a745;
+        border-radius: 4px;
+        font-size: 16px;
+        text-indent: 10px;
+      }
+
+      .input-group input:focus {
+        border-color: #1a73e8;
+        outline: none;
+      }
+
+      .input-group.grid {
+        display: grid; /* Enables grid layout */
+        grid-template-columns: 1fr 1fr; /* Two equal columns */
+        gap: 20px; /* Space between columns */
+      }
+
+      .grid-item {
+        display: flex; /* Flexbox layout for items inside grid */
+        flex-direction: column; /* Aligns label and input vertically */
+      }
+
+      .grid-item label {
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #333;
+        text-align: left;
+      }
+
+      .grid-item input {
+        padding: 10px 10px;
+        border: 2px solid #28a745;
+        border-radius: 4px;
+        font-size: 16px;
+        text-indent: 10px;
+        width: 100%; /* Full width for inputs */
+      }
+
+      .grid-item input:focus {
+        border-color: #1a73e8;
+        outline: none;
+      }
+
+      .button-group {
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+        margin-top: 20px;
+      }
+
+      button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 70px;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+        color: white;
+        width: 100px;
+        margin-left: 15px;
+      }
+
+      .cancel-btn {
+        background-color: #004aad;
+      }
+
+      .predict-btn {
+        background-color: #004aad;
+      }
+
+      button:hover {
+        opacity: 0.9;
+      }
+
+      #state {
+        width: 100%;
+        padding: 10px 15px;
+        border: 2px solid #28a745;
+        border-radius: 5px;
+        font-size: 16px;
+        background-color: white;
+        cursor: pointer;
+        appearance: none; /* Hapus tampilan default browser */
+        background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%23004AAD' d='M5 6L0 0h10z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        background-size: 10px;
+        color: #808080; /* Default placeholder color */
+        position: relative;
+        overflow-y: auto; /* Aktifkan scrolling jika banyak opsi */
+      }
+
+      #state option {
+        max-height: 150px; /* Estimasi tinggi untuk 5 opsi */
+        color: #000; /* Warna teks untuk opsi yang dipilih */
+      }
+
+      #state:invalid {
+        color: #808080; /* Warna teks placeholder */
+      }
+
+      #state:focus {
+        max-height: 150px;
+        overflow-y: auto; 
+        border-color: #1a73e8;
+        box-shadow: 0 0 5px rgba(26, 115, 232, 0.5);
+        outline: none;
+        display: block;
+      }
+
+      .custom-select {
+        width: 100%;
+        padding: 10px;
+        border: 2px solid #28a745;
+        border-radius: 5px;
+        font-size: 16px;
+        background-color: white;
+        cursor: pointer;
+        appearance: none;
+      }
+
+      /* Membatasi tinggi dropdown agar hanya 5 opsi yang terlihat */
+      .custom-select:focus {
+        height: auto;
+      }
+
+      .custom-select option {
+        height: 30px; /* Sesuaikan tinggi setiap opsi */
+      }
+
+      /* Batasi jumlah opsi yang terlihat dengan scrollbar */
+      .custom-select option:nth-child(n+6) {
+        display: none;
+      }
+
+      /* Aktifkan scrollbar di dropdown */
+      .custom-select:focus option:nth-child(n+6) {
+        display: block;
+      }
+
+      .custom-select:focus {
+        max-height: 180px; /* Sesuaikan tinggi dropdown agar 5 opsi terlihat */
+        overflow-y: auto;
+      }
+
+      .custom-select::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      .custom-select::-webkit-scrollbar-thumb {
+        background: #28a745;
+        border-radius: 10px;
+      }
+
+      .custom-select::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+
+      /* Responsiveness for smaller screens */
+      @media (max-width: 768px) {
+        nav {
+            width: 70px; /* Smaller width for navigation */
+        }
+
+        nav:hover {
+            width: 180px; /* Adjust width when hovered */
+        }
+
+        .container {
+            margin-left: 20px;
+            margin-right: 20px;
+            padding: 20px; /* Adjust padding for smaller screens */
+            transform: translate(0); /* Center the container */
+        }
+
+        h1 {
+            font-size: 32px; /* Smaller font size for headings */
+        }
+
+        .input-group input, .grid-item input {
+            font-size: 14px; /* Reduce font size for inputs */
+            padding: 8px 8px; /* Adjust padding */
+        }
+
+        .button-group {
+            flex-direction: column; /* Stack buttons vertically */
+            align-items: stretch;
+        }
+
+        button {
+            width: 100%; /* Full width buttons */
+            margin: 10px 0; /* Add spacing between buttons */
+        }
+    }
+
+    @media (max-width: 480px) {
+        nav {
+            width: 60px; /* Even smaller width for very small screens */
+        }
+
+        nav:hover {
+            width: 150px; /* Adjust hover width */
+        }
+
+        .container {
+            padding: 15px; /* Smaller padding for very small screens */
+        }
+
+        h1 {
+            font-size: 24px; /* Further reduce heading size */
+        }
+
+        .input-group input, .grid-item input {
+            font-size: 12px; /* Smaller font size for inputs */
+        }
+    }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li>
+          <a href="home.html" class="logo">
+            <img src="/Asset/Logo Home.png" alt="" />
+            <span class="nav-item">DENTAL EDUCATION</span>
+          </a>
+        </li>
+        <li>
+          <a href="profile.html">
+            <i class="fas fa-user"></i>
+            <span class="nav-item2">Profile</span>
+          </a>
+        </li>
+        <li>
+          <a href="information1.html">
+            <i class="fas fa-graduation-cap"></i>
+            <span class="nav-item2">Grade Prediction</span>
+          </a>
+        </li>
+        <!-- <li><a href="information2.html">
+                <i class="fas fa-upload"></i>
+                <span class="nav-item2">Upload</span>
+            </a></li>
+            <li><a href="result.html">
+                <i class="fas fa-chart-line"></i>
+                <span class="nav-item2">Result Analytics</span>
+            </a></li> -->
+        <li>
+          <a href="hasilGradePrediction.html">
+            <i class="fas fa-chart-column"></i>
+            <span class="nav-item2">Result Grade Prediction</span>
+          </a>
+        </li>
+        <li>
+          <a href="hasilRepeat.html">
+            <i class="fas fa-chart-gantt"></i>
+            <span class="nav-item2">Result Repeat Paper</span>
+          </a>
+        </li>
+        <li>
+          <a href="LandingPage.html" class="logout">
+            <i class="fas fa-sign-out-alt"></i>
+            <span class="nav-item2">Logout</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="container">
+      <h1>Pharmacology Mark</h1>
+      <form id="predictionForm">
+        <div class="input-group">
+          <!-- <label for="name">Name</label> -->
+          <input type="text" id="userName" placeholder="Name" required />
+        </div>
+        <div class="input-group">
+          <!-- <label for="age">Age</label> -->
+          <input type="number" id="userAge" placeholder="Age" required />
+        </div>
+
+        <div class="input-group">
+          <!-- <label for="state">State</label> -->
+          <select id="state" class="custom-select" style="width: 100%; padding: 10px; border: 2px solid #28a745; border-radius: 5px; font-size: 16px;" required>
+            <option value="" disabled selected> State</option>
+            <option value="Selangor">SELANGOR</option>
+            <option value="Kelantan">KELANTAN</option>
+            <option value="Pahang">PAHANG</option>
+            <option value="Negeri Sembilan">NEGERI SEMBILAN</option>
+            <option value="Kuala Lumpur">KUALA LUMPUR</option>
+            <option value="Kedah">KEDAH</option>
+            <option value="Johor">JOHOR</option>
+            <option value="W. Persekutuan">W. PERSEKUTUAN</option>
+            <option value="Perak">PERAK</option>
+            <option value="Melaka">MELAKA</option>
+            <option value="Terengganu">TERENGGANU</option>
+            <option value="Sabah">SABAH</option>
+            <option value="Perlis">PERLIS</option>
+            <option value="Pulau Pinang">PULAU PINANG</option>
+            <option value="Sarawak">SARAWAK</option>
+            <option value="Putrajaya">PUTRAJAYA</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <!-- <label for="semester">Total Semester of Pre-University</label> -->
+          <input
+            type="number"
+            id="userSemester"
+            placeholder="Semester of Pre-University"
+            required
+          />
+        </div>
+        <div class="input-group grid">
+          <div class="grid-item">
+            <!-- <label for="averageCGPA">Average CGPA of Pre-University</label> -->
+            <input
+              type="text"
+              id="averageCGPA"
+              placeholder="Average CGPA of Pre-University"
+              required
+            />
+          </div>
+          <div class="grid-item">
+            <!-- <label for="finalCGPA">Final CGPA of Pre-University</label> -->
+            <input
+              type="text"
+              id="finalCGPA"
+              placeholder="Final CGPA of Pre-University"
+              required
+            />
+          </div>
+        </div>
+        <div class="button-group">
+          <button
+            type="button"
+            id="cancel_form"
+            class="cancel-btn"
+            onclick="cancelForm()"
+          >
+            Cancel
+          </button>
+          <button type="submit" id="prediction_form" class="predict-btn">
+            Predict
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <script type="module">
+      import { predictOutcome } from "./service.js"; // Pastikan path file benar
+
+      const token = localStorage.getItem("auth-token");
+        if (!token) {
+            Swal.fire({
+                icon: "warning",
+                title: "Access Denied",
+                text: "You need to login to access this page.",
+            }).then(() => {
+                window.location.href = "Logsig.html";
+            });
+        }
+
+      document.getElementById("cancel_form").addEventListener("click", (e) => {
+        window.location.href = "Feature.html";
+      });
+
+document.getElementById("state").addEventListener("change", function () {
+          const selectedOption = this.options[this.selectedIndex].text;
+          const stateSelect = this;  // Reference to the select element
+
+          // If no option is selected, do nothing and keep the select dropdown visible
+          if (this.selectedIndex === 0) {
+              return;
+          }
+
+          const st = document.getElementById("state")
+          console.log(st.value)
+
+          // Hide the select dropdown after selection
+          stateSelect.style.display = "none";
+
+          // Create a new element to display the selected option
+          const stateText = document.createElement("div");
+          stateText.textContent = selectedOption;
+
+          // Apply CSS styles
+          stateText.style.padding = "12px 10px";
+          stateText.style.border = "2px solid #28a745";
+          stateText.style.borderRadius = "5px";
+          stateText.style.fontSize = "15px";
+          stateText.style.backgroundColor = "white";
+          stateText.style.color = "black";
+          stateText.style.marginTop = "10px";
+          stateText.style.width = "100%";
+          stateText.style.textIndent = "10px";
+          stateText.style.cursor = "pointer";  // Indicate that this is clickable
+
+          // Add a click event to re-show the select dropdown when the user clicks the displayed choice
+          stateText.addEventListener("click", function () {
+              stateSelect.style.display = "inline-block";  // Show the dropdown again
+              stateText.remove();  // Remove the displayed selected option text
+          });
+
+          // Insert the new element after the dropdown
+          this.parentNode.appendChild(stateText);
+      });
+
+      document
+        .getElementById("prediction_form")
+        .addEventListener("click", async (event) => {
+          event.preventDefault(); // Mencegah refresh halaman
+
+          // Ambil nilai input
+          const name = document.getElementById("userName").value;
+          const age = parseInt(document.getElementById("userAge").value, 10);
+          const state = document.getElementById("state").value;
+          const semester = parseInt(
+            document.getElementById("userSemester").value,
+            10
+          );
+          const average_cgpa = parseFloat(
+            document.getElementById("averageCGPA").value
+          );
+          const final_cgpa = parseFloat(
+            document.getElementById("finalCGPA").value
+          );
+
+          if (
+            !name ||
+            !age ||
+            !state ||
+            !semester ||
+            !average_cgpa ||
+            !final_cgpa
+          ){
+            Swal.fire({
+              icon: "warning",
+              title: "Invalid Input",
+              text: "Please fill out all fields before proceeding.",
+            });
+              return;
+            }
+
+          const resultElement = document.getElementById("result");
+          try {
+            // Panggil fungsi prediksi
+            const tokenTwo = localStorage.getItem("auth-token");
+            const [prediction, err] = await predictOutcome({
+              type: "pharmacology",
+              name,
+              age,
+              state,
+              semester,
+              average_cgpa,
+              final_cgpa,
+              token,
+            });
+
+            if (err) {
+              Swal.fire({
+                icon: "error",
+                title: "Failed to Prediction",
+                text: "Error during while prediction",
+              });
+              return;
+            }
+
+            Swal.fire({
+              icon: "success",
+              title: "Prediction Success",
+              text: prediction.data.result,
+            });
+          } catch (error) {
+            Swal.fire({
+              icon: "error",
+              title: "Failed to Prediction",
+              text: "Error during while prediction",
+            });
+          }
+        });
+
+        document.querySelector(".logout").addEventListener("click", (e) => {
+            e.preventDefault(); // Prevent default action
+
+            // Show confirmation dialog before logout
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You will be logged out and redirected to the login page.",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, logout",
+                cancelButtonText: "No, cancel",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Remove the auth-token from localStorage
+                    localStorage.removeItem("auth-token");
+
+                    // Show logout success message
+                    Swal.fire({
+                        icon: "success",
+                        title: "Logged Out",
+                        text: "You have been successfully logged out.",
+                    }).then(() => {
+                        // Redirect to the login page
+                        window.location.href = "LandingPage.html";
+                    });
+                }
+            });
+        });
+
+    </script>
+  </body>
+</html>

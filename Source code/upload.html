@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Upload</title>
+    <!-- <link rel="stylesheet" href="Biochemistry.css"> -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        outline: none;
+        border: none;
+        text-decoration: none;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        background: #dfe9f5;
+      }
+
+      nav {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        height: 100%;
+        left: 0;
+        background: white;
+        width: 90px;
+        overflow: hidden;
+        transition: width 0.2s linear;
+        box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+        z-index: 2;
+      }
+
+      .logo {
+        text-align: center;
+        display: flex;
+        transition: all 0.5s ease;
+        margin: 10px 0 0 10px;
+      }
+
+      .logo img {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+      }
+
+      .logo span {
+        font-weight: bold;
+        padding: 0px;
+        font-size: 18px;
+        text-transform: uppercase;
+      }
+
+      a {
+        position: relative;
+        color: #004aad;
+        font-size: 14px;
+        display: table;
+        width: 300px;
+        padding: 10px;
+      }
+
+      .fas {
+        position: relative;
+        width: 70px;
+        height: 40px;
+        top: 14px;
+        font-size: 20px;
+        text-align: center;
+      }
+
+      .nav-item {
+        position: relative;
+        top: 12px;
+        margin-left: 25px;
+      }
+
+      .nav-item2 {
+        position: relative;
+        top: 12px;
+        margin-left: 10px;
+      }
+
+      a:hover {
+        background: #eee;
+      }
+
+      nav:hover {
+        width: 280px;
+        transition: all 0.5s ease;
+      }
+
+      .logout {
+        position: absolute;
+        bottom: 0;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin-top: 30px;
+        margin-left: 70px;
+        margin-right: 70px;
+        padding: 80px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        border-radius: 10px;
+        transform: translate(140px);
+        background-color: white;
+      }
+
+      .upload-container {
+        text-align: center;
+        width: 60%;
+        max-width: 600px;
+      }
+
+      h1 {
+        color: #004aad;
+        font-size: 2rem;
+      }
+
+      p {
+        color: black;
+      }
+
+      .upload-box {
+        border: 2px dashed #004aad;
+        border-radius: 8px;
+        padding: 50px;
+        margin: 30px auto; /* Centered with auto */
+        width: 100%; /* Takes the full width of the container */
+        max-width: 7000px;
+        position: relative;
+        cursor: pointer;
+        text-align: center;
+      }
+
+      .upload-box:hover {
+        background-color: #f9f9f9;
+      }
+
+      .upload-icon img {
+        display: block;
+        margin: 0 auto;
+      }
+
+      .upload-text {
+        color: #004aad;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .drag-text {
+        color: #8a9cb7;
+        font-weight: bold;
+      }
+
+      input[type="file"] {
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        cursor: pointer;
+      }
+
+      .upload-controls {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        margin-top: 10px;
+      }
+
+      select,
+      button {
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-size: 1rem;
+      }
+
+      select {
+        color: #555;
+      }
+
+      button {
+        cursor: pointer;
+      }
+
+      button:nth-child(2) {
+        background-color: #004aad;
+        color: #fff;
+        border: none;
+      }
+
+      button:nth-child(3) {
+        background-color: #004aad;
+        color: #fff;
+        border: none;
+      }
+
+      button:nth-child(3):hover {
+        background-color: #004aad;
+      }
+
+                      /* Responsiveness for smaller screens */
+                      @media (max-width: 768px) {
+        nav {
+            width: 70px; /* Smaller width for navigation */
+        }
+
+        nav:hover {
+            width: 180px; /* Adjust width when hovered */
+        }
+
+        .container {
+            margin-left: 20px;
+            margin-right: 20px;
+            padding: 20px; /* Adjust padding for smaller screens */
+            transform: translate(0); /* Center the container */
+        }
+
+        h1 {
+            font-size: 32px; /* Smaller font size for headings */
+        }
+
+        .input-group input, .grid-item input {
+            font-size: 14px; /* Reduce font size for inputs */
+            padding: 8px 8px; /* Adjust padding */
+        }
+
+        .button-group {
+            flex-direction: column; /* Stack buttons vertically */
+            align-items: stretch;
+        }
+
+        button {
+            width: 100%; /* Full width buttons */
+            margin: 10px 0; /* Add spacing between buttons */
+        }
+    }
+
+    @media (max-width: 480px) {
+        nav {
+            width: 60px; /* Even smaller width for very small screens */
+        }
+
+        nav:hover {
+            width: 150px; /* Adjust hover width */
+        }
+
+        .container {
+            padding: 15px; /* Smaller padding for very small screens */
+        }
+
+        h1 {
+            font-size: 24px; /* Further reduce heading size */
+        }
+
+        .input-group input, .grid-item input {
+            font-size: 12px; /* Smaller font size for inputs */
+        }
+    }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li>
+          <a href="home.html" class="logo">
+            <img src="/Asset/Logo Home.png" alt="" />
+            <span class="nav-item">DENTAL EDUCATION</span>
+          </a>
+        </li>
+        <li>
+          <a href="profile.html">
+            <i class="fas fa-user"></i>
+            <span class="nav-item2">Profile</span>
+          </a>
+        </li>
+        <li>
+          <a href="information1.html">
+            <i class="fas fa-graduation-cap"></i>
+            <span class="nav-item2">Grade Prediction</span>
+          </a>
+        </li>
+        <li>
+          <!-- <a href="information2.html">
+            <i class="fas fa-upload"></i>
+            <span class="nav-item2">Upload</span>
+          </a>
+        </li>
+        <li>
+          <a href="result.html">
+            <i class="fas fa-chart-line"></i>
+            <span class="nav-item2">Result Analytics</span>
+          </a>
+        </li> -->
+        <li>
+          <a href="hasilGradePrediction.html">
+            <i class="fas fa-chart-column"></i>
+            <span class="nav-item2">Result Grade Prediction</span>
+          </a>
+        </li>
+        <li>
+          <a href="hasilRepeat.html">
+            <i class="fas fa-chart-gantt"></i>
+            <span class="nav-item2">Result Repeat Paper</span>
+          </a>
+        </li>
+        <li>
+          <a href="LandingPage.html" class="logout">
+            <i class="fas fa-sign-out-alt"></i>
+            <span class="nav-item2">Logout</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="container">
+      <h1>Upload Excel File</h1>
+      <p>
+        Ensure the uploaded Excel file is not empty, follows the correct
+        <br />column format, and contains only valid data for predicting
+      </p>
+      <div class="upload-box" id="uploadBox">
+        <div class="upload-icon">
+          <img src="/Asset/Logo Upload.png" alt="Upload Icon" width="120" />
+        </div>
+        <label for="fileInput" class="upload-text"
+          >Select an Excel File to Upload</label
+        >
+        <p>or</p>
+        <p class="drag-text">Drag an Excel File to Upload</p>
+        <input type="file" id="fileInput" accept=".xls,.xlsx" />
+      </div>
+      <div class="upload-controls">
+        <select id="fileType">
+          <option value="Repeat Paper">Repeat Paper Prediction</option>
+          <option value="Anatomy">Anatomy Mark Prediction</option>
+          <option value="Biochemistry">Biochemistry Mark Prediction</option>
+          <option value="Physiology">Physiology Mark Prediction</option>
+          <option value="Oral Biology">Oral Biology Mark Prediction</option>
+          <option value="Pathology">Pathology Mark Prediction</option>
+          <option value="Microbiology">Microbiology Mark Prediction</option>
+          <option value="Pharmacology">Pharmacology Mark Prediction</option>
+          <option value="Dental Material">Dental Material Science</option>
+        </select>
+        <button onclick="cancelUpload()">Cancel</button>
+        <button id="uploadFile">Upload</button>
+      </div>
+    </div>
+
+    <script type="module">
+      import { bulkUploadPrediction } from "./service.js";
+      let formData = new FormData();
+      document
+        .getElementById("fileInput")
+        .addEventListener("change", async (e) => {
+          try {
+            const file = e.target.files[0];
+            if (file.size > 5 * 1024 * 1024) {
+              // 5MB limit
+              Swal.fire({
+                title: "Update Failed",
+                text: "Photo Size is too large",
+                icon: "error",
+                confirmButtonText: "Ok",
+              });
+              e.preventDefault();
+              return;
+            }
+            formData.append("file", file);
+            Swal.fire({
+              icon: "success",
+              title: "Success Upload Excel",
+              text: "Your Excel Data has been uploaded successfully!",
+            });
+          } catch (err) {
+            Swal.fire({
+              title: "Upload Failed",
+              text: "Cannot Upload an Excel",
+              icon: "error",
+              confirmButtonText: "Ok",
+            });
+            e.preventDefault();
+            return;
+          }
+        });
+
+      function cancelUpload() {
+        const fileInput = document.getElementById("fileInput");
+        fileInput.value = ""; // Clear selected file
+        alert("File upload cancelled");
+      }
+
+      document
+        .getElementById("uploadFile")
+        .addEventListener("click", async (e) => {
+          e.preventDefault();
+          const result = document.getElementById("fileType");
+          try {
+            formData.append("type", result.value);
+            await bulkUploadPrediction(formData);
+            Swal.fire({
+              icon: "success",
+              title: "Success Predict with File",
+              text: "Your data has been successfully predicted with our system",
+            });
+            formData.delete("file");
+          } catch (err) {
+            Swal.fire({
+              title: "Predict Failed",
+              text: "Please Provide the File",
+              icon: "error",
+              confirmButtonText: "Ok",
+            });
+            formData = new FormData();
+            e.preventDefault();
+            return;
+          }
+        });
+    </script>
+  </body>
+</html>

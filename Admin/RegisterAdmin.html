@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Register for Admin</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Montserrat", sans-serif;
+      }
+
+      body {
+        background-color: #dfe9f5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        height: 100vh;
+      }
+
+      .container {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+        position: relative;
+        overflow: hidden;
+        width: 1200px;
+        max-width: 100%;
+        min-height: 650px;
+        display: flex;
+      }
+
+      .toggle-container {
+        width: 50%;
+        background-color: #004aad;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%);
+      }
+
+      .logo-image {
+        width: 250px;
+        height: auto;
+        z-index: 1;
+      }
+
+      .form-container {
+        width: 50%;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .form-container h1 {
+        color: #004aad;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .form-container label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 500;
+        font-size: 14px;
+        color: #004aad;
+      }
+
+      .form-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px; /* Space between first name and last name */
+      }
+
+      .form-row > div {
+        width: 48%; /* Ensure each input takes up roughly half of the container width */
+      }
+
+      .form-container input,
+      .form-container textarea {
+        background-color: #eee;
+        border: none;
+        margin: 8px 0;
+        padding: 10px 15px;
+        font-size: 13px;
+        border-radius: 8px;
+        width: 100%;
+        outline: none;
+      }
+      .form-container .button-container {
+        text-align: center; /* Menengahkan tombol */
+        margin-top: 0px;
+      }
+      .form-container button {
+        background-color: #004aad;
+        color: #fff;
+        font-size: 12px;
+        padding: 10px 45px;
+        border: 3px solid transparent;
+        border-radius: 8px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        margin-top: 10px;
+        cursor: pointer;
+        display: inline-block;
+      }
+
+                      /* Responsiveness for smaller screens */
+                      @media (max-width: 768px) {
+        nav {
+            width: 70px; /* Smaller width for navigation */
+        }
+
+        nav:hover {
+            width: 180px; /* Adjust width when hovered */
+        }
+
+        .container {
+            margin-left: 20px;
+            margin-right: 20px;
+            padding: 20px; /* Adjust padding for smaller screens */
+            transform: translate(0); /* Center the container */
+        }
+
+        h1 {
+            font-size: 32px; /* Smaller font size for headings */
+        }
+
+        .input-group input, .grid-item input {
+            font-size: 14px; /* Reduce font size for inputs */
+            padding: 8px 8px; /* Adjust padding */
+        }
+
+        .button-group {
+            flex-direction: column; /* Stack buttons vertically */
+            align-items: stretch;
+        }
+
+        button {
+            width: 100%; /* Full width buttons */
+            margin: 10px 0; /* Add spacing between buttons */
+        }
+    }
+
+    @media (max-width: 480px) {
+        nav {
+            width: 60px; /* Even smaller width for very small screens */
+        }
+
+        nav:hover {
+            width: 150px; /* Adjust hover width */
+        }
+
+        .container {
+            padding: 15px; /* Smaller padding for very small screens */
+        }
+
+        h1 {
+            font-size: 24px; /* Further reduce heading size */
+        }
+
+        .input-group input, .grid-item input {
+            font-size: 12px; /* Smaller font size for inputs */
+        }
+    }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <!-- Bagian Biru di Sebelah Kiri -->
+      <div class="toggle-container">
+        <img src="/Asset/Logo Home.png" alt="Blue Icon" class="logo-image" />
+      </div>
+
+      <!-- Register for Admin Form -->
+      <div class="form-container">
+        <form id="registerForm">
+          <h1>Register for Admin</h1>
+          <div class="form-row">
+            <div>
+              <label for="first name">First Name</label>
+              <input type="text" id="first-name" placeholder="" required />
+            </div>
+            <div>
+              <label for="last name">Last Name</label>
+              <input type="text" id="lastNameInput" placeholder="" required />
+            </div>
+          </div>
+          <label for="email1">Email</label>
+          <input type="email" id="emailAdmin" placeholder="" required />
+          <label for="telephone">Mobile Phone</label>
+          <input type="tel" id="phoneAdmin" placeholder="" required />
+          <div class="button-container">
+            <button type="button" id="registerButton">
+              Create Account for Admin
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script type="module">
+      import { registerAdmin } from "./service.js";
+
+      const token = localStorage.getItem("auth-token-admin");
+
+      if (!token) {
+        Swal.fire({
+          icon: "warning",
+          title: "Access Denied",
+          text: "You need to login to access this page.",
+        }).then(() => {
+          window.location.href = "loginAdmin.html";
+        });
+      }
+
+      const registerButton = document.querySelector("#registerButton");
+      const firstName = document.querySelector("#first-name");
+      const lastName = document.querySelector("#lastNameInput");
+      const email = document.querySelector("#emailAdmin");
+      const phone = document.querySelector("#phoneAdmin");
+
+
+      registerButton.addEventListener("click", async (e) => {
+
+        if (!firstName.value || !lastName.value || !email.value || !phone.value) {
+          Swal.fire({
+            icon: "warning",
+            title: "Incomplete Form",
+            text: "Please fill out all fields before submitting.",
+            confirmButtonText: "Ok",
+          });
+          return;
+        }
+        
+        const payload = {
+          firstName: firstName.value,
+          lastName: lastName.value,
+          email: email.value,
+          phone: phone.value,
+        };
+        console.log(payload);
+        const [result, error] = await registerAdmin(payload);
+
+        if (error) {
+          Swal.fire({
+            icon: "error",
+            title: "Invitation Failed",
+            text: error.message || "Failed to send Invitation",
+            confirmButtonText: "Ok",
+          });
+          return;
+        }
+        Swal.fire({
+          icon: "success",
+          title: "Invitation Send",
+          text: "Success Send an Invitation to New Admin",
+          confirmButtonText: "Ok",
+        });
+        return;
+      });
+    </script>
+  </body>
+</html>

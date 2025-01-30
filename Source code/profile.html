@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: #dfe9f5;
+    display: flex;
+    justify-content: center;  /* Memusatkan konten secara horizontal */
+    align-items: center;      /* Memusatkan konten secara vertikal */
+    height: 100vh;            /* Membuat body mengisi seluruh tinggi viewport */
+    margin: 0;                /* Menghilangkan margin default */
+}
+
+nav {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    background: white;
+    width: 90px;
+    overflow: hidden;
+    transition: width 0.2s linear;
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+}
+
+.logo {
+    text-align: center;
+    display: flex;
+    transition: all 0.5s ease;
+    margin: 10px 0 0 10px;
+}
+
+.logo img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+
+.logo span {
+    font-weight: bold;
+    padding: 0px;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+a {
+    position: relative;
+    color: #004AAD;
+    font-size: 14px;
+    display: table;
+    width: 300px;
+    padding: 10px;
+}
+
+.fas {
+    position: relative;
+    width: 70px;
+    height: 40px;
+    top: 14px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.nav-item {
+    position: relative;
+    top: 12px;
+    margin-left: 25px;
+}
+
+.nav-item2 {
+    position: relative;
+    top: 12px;
+    margin-left: 10px;
+}
+
+a:hover {
+    background: #eee;
+}
+
+nav:hover {
+    width: 280px;
+    transition: all 0.5s ease;
+}
+
+.logout {
+    position: absolute;
+    bottom: 0;
+}
+
+.profile-container {
+    display: flex;
+    background-color: white;
+    padding: 60px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 1000px;
+    margin-right: 10px;
+    margin-bottom: auto;
+    margin-left: 70px;
+    margin-top: auto;
+        }
+
+        .profile-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .profile-image img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background-color: #ccc;
+        }
+
+        .profile-info {
+            flex: 2;
+            padding-left: 20px;
+        }
+
+        .profile-info h2 {
+            margin-bottom: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #004aad;
+        }
+
+        .profile-info p {
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #333;
+        }
+        .profile-info a {
+    text-decoration: none;
+    color: white;  /* Warna teks */
+    background-color: #004AAD;  /* Warna latar belakang tombol */
+    font-weight: bold;
+    display: inline-block;  /* Menjaga tombol tetap inline */
+    margin-top: 20px;
+    padding: 8px 20px;  /* Menyesuaikan padding agar lebih proporsional */
+    border-radius: 4px;  /* Agar sudutnya melengkung */
+    text-align: left;  /* Memastikan teks berada di tengah */
+    transition: background-color 0.3s ease;  /* Animasi perubahan warna latar belakang */
+    width: auto;  /* Membuat lebar tombol otomatis sesuai dengan konten */
+}
+
+.profile-info a:hover {
+    background-color: #003366;  /* Mengubah warna latar belakang saat hover */
+    text-decoration: none;
+}
+
+                /* Responsiveness for smaller screens */
+                @media (max-width: 768px) {
+        nav {
+            width: 70px; /* Smaller width for navigation */
+        }
+
+        nav:hover {
+            width: 180px; /* Adjust width when hovered */
+        }
+
+        .container {
+            margin-left: 20px;
+            margin-right: 20px;
+            padding: 20px; /* Adjust padding for smaller screens */
+            transform: translate(0); /* Center the container */
+        }
+
+        h1 {
+            font-size: 32px; /* Smaller font size for headings */
+        }
+
+        .input-group input, .grid-item input {
+            font-size: 14px; /* Reduce font size for inputs */
+            padding: 8px 8px; /* Adjust padding */
+        }
+
+        .button-group {
+            flex-direction: column; /* Stack buttons vertically */
+            align-items: stretch;
+        }
+
+        button {
+            width: 100%; /* Full width buttons */
+            margin: 10px 0; /* Add spacing between buttons */
+        }
+    }
+
+    @media (max-width: 480px) {
+        nav {
+            width: 60px; /* Even smaller width for very small screens */
+        }
+
+        nav:hover {
+            width: 150px; /* Adjust hover width */
+        }
+
+        .container {
+            padding: 15px; /* Smaller padding for very small screens */
+        }
+
+        h1 {
+            font-size: 24px; /* Further reduce heading size */
+        }
+
+        .input-group input, .grid-item input {
+            font-size: 12px; /* Smaller font size for inputs */
+        }
+    }
+
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li>
+                <a href="home.html" class="logo">
+                    <img src="/Asset/Logo Home.png" alt="">
+                    <span class="nav-item">DENTAL EDUCATION</span>
+                </a>
+            </li>
+            <li><a href="profile.html">
+                <i class="fas fa-user"></i>
+                <span class="nav-item2">Profile</span>
+            </a></li>
+            <li><a href="information1.html">
+                <i class="fas fa-graduation-cap"></i>
+                <span class="nav-item2">Grade Prediction</span>
+            </a></li>
+            <!-- <li><a href="information2.html">
+                <i class="fas fa-upload"></i>
+                <span class="nav-item2">Upload</span>
+            </a></li>
+            <li><a href="result.html">
+                <i class="fas fa-chart-line"></i>
+                <span class="nav-item2">Result Analytics</span>
+            </a></li> -->
+            <li><a href="hasilGradePrediction.html">
+                <i class="fas fa-chart-column"></i>
+                <span class="nav-item2">Result Grade Prediction</span>
+            </a></li>
+            <li><a href="hasilRepeat.html">
+                <i class="fas fa-chart-gantt"></i>
+                <span class="nav-item2">Result Repeat Paper</span>
+            </a></li>
+            <li><a href="LandingPage.html" class="logout">
+                <i class="fas fa-sign-out-alt"></i>
+                <span class="nav-item2">Logout</span>
+            </a></li>
+        </ul>
+    </nav>
+
+    <div class="profile-container">
+        <div class="profile-image">
+            <img src="/Asset/Default Profile.png" id="profile-img" alt="Profile Image">
+        </div>
+        <div class="profile-info">
+            <h2>Name:</h2>
+            <p id="userName">Sani Maulida Hidayat</p>
+            
+            <h2>Email:</h2>
+            <p id="userEmail">sanimaulidaa19@gmail.com</p>
+            
+            <h2>Mobile Number:</h2>
+            <p id="userMobile">08131245363893</p>
+            
+            <a href="editProfile.html"><i class="fas fa-pencil-alt"></i>Edit Profile</a>
+        </div>
+    </div>
+
+
+    <script type="module">
+        
+        import {getUserProfile} from './service.js';
+
+        // Mengambil data dari localStorage berdasarkan key yang telah disimpan
+        const token = localStorage.getItem("auth-token");
+        if (!token) {
+            Swal.fire({
+                icon: "warning",
+                title: "Access Denied",
+                text: "You need to login to access this page.",
+            }).then(() => {
+                window.location.href = "Logsig.html";
+            });
+        }
+
+        // Jika data ada, maka userData akan berisi nilai data tersebut, jika tidak, akan berisi null
+
+
+    
+          try {
+            // Panggil fungsi `getUserProfile` untuk mendapatkan data
+            const userData = await getUserProfile(token);
+
+            const {data}  = userData
+            
+            if(data.cover !== null) {
+                document.getElementById("profile-img").src = data.cover
+            }            
+
+            document.getElementById('userName').textContent = `${userData.data.firstName} ${userData.data.lastName}`;
+            document.getElementById('userEmail').textContent = userData.data.email;
+            document.getElementById('userMobile').textContent = userData.data.phone;
+    
+    
+          } catch (error) {
+            console.error('Error fetching user profile:', error);
+            alert('Failed to load profile. Please try again.');
+          }
+
+          document.querySelector(".logout").addEventListener("click", (e) => {
+            e.preventDefault(); // Prevent default action
+
+            // Show confirmation dialog before logout
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You will be logged out and redirected to the login page.",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, logout",
+                cancelButtonText: "No, cancel",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Remove the auth-token from localStorage
+                    localStorage.removeItem("auth-token");
+
+                    // Show logout success message
+                    Swal.fire({
+                        icon: "success",
+                        title: "Logged Out",
+                        text: "You have been successfully logged out.",
+                    }).then(() => {
+                        // Redirect to the login page
+                        window.location.href = "LandingPage.html";
+                    });
+                }
+            });
+        });
+        
+      </script>
+
+</body>
+</html>

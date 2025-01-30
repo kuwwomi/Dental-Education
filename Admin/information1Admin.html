@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Information</title>
+    <!-- <link rel="stylesheet" href="anatomy.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: #dfe9f5;
+}
+
+nav {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    background: white;
+    width: 90px;
+    overflow: hidden;
+    transition: width 0.2s linear;
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+}
+
+.logo {
+    text-align: center;
+    display: flex;
+    transition: all 0.5s ease;
+    margin: 10px 0 0 10px;
+}
+
+.logo img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+
+.logo span {
+    font-weight: bold;
+    padding: 0px;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+a {
+    position: relative;
+    color: #004AAD;
+    font-size: 14px;
+    display: table;
+    width: 300px;
+    padding: 10px;
+}
+
+.fas {
+    position: relative;
+    width: 70px;
+    height: 40px;
+    top: 14px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.nav-item {
+    position: relative;
+    top: 12px;
+    margin-left: 25px;
+}
+
+.nav-item2 {
+    position: relative;
+    top: 12px;
+    margin-left: 10px;
+}
+
+a:hover {
+    background: #eee;
+}
+
+nav:hover {
+    width: 280px;
+    transition: all 0.5s ease;
+}
+
+.logout {
+    position: absolute;
+    bottom: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin-top: 50px;
+    margin-left: 30px;
+    margin-right: 70px;
+    padding: 100px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    transform: translate(140px);
+    background-color: white;
+    align-items: stretch;
+}
+
+h1 {
+    position: absolute; /* Memposisikan relatif terhadap elemen induk */
+    top: 10px; /* Tempatkan elemen di dekat bagian atas */
+    left: 50%; /* Tempatkan elemen di tengah secara horizontal */
+    transform: translateX(-50%); /* Pusatkan elemen secara horizontal */
+    margin: 0; /* Hilangkan margin bawaan */
+    font-size: 30px; /* Ukuran font */
+    color: #222; /* Warna teks */
+    text-align: center; /* Selaraskan teks secara horizontal */
+    width: auto; /* Sesuaikan lebar dengan konten */
+}
+
+.info-section {
+    position: relative;
+    height: 60vh;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    justify-content: space-between; /* Beri jarak di antara elemen */
+    flex-direction: row; /* Tukar posisi elemen dalam kontainer */
+}
+
+.accordion {
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    transform: translate(0, -50%);
+    /* flex: 1; */
+    max-width: 40%;
+    /* margin-left: 20px; Tambahkan jarak dari elemen lainnya */
+}
+
+.accordion-item {
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 100%; /* Pastikan lebar penuh */
+}
+
+.accordion-header {
+    background-color: #004AAD;
+    color: white;
+    padding: 10px;
+    text-align: left;
+    width: calc(100% - 0px); /* Sesuaikan dengan padding border */
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex; /* Untuk memastikan ikon tetap di dalam */
+    justify-content: space-between;
+    align-items: center;
+}
+
+.accordion-header i {
+    float: right; /* Menempatkan ikon di sebelah kanan header */
+    transition: transform 0.3s ease; /* Animasi rotasi */
+}
+
+
+.accordion-header:hover {
+    background-color: #004AAD;
+}
+
+.accordion-content {
+    background-color: #eaf5f7;
+    padding: 15px;
+    display: none;
+}
+
+.accordion-content ul {
+    list-style-type: none;
+    padding-left: 15px;
+    margin-top: 10px;
+}
+
+.accordion-content ul li {
+    margin-bottom: 5px;
+}
+
+.image-section {
+    position: absolute;
+    top: 50%;
+    right: 5%;
+    transform: translate(0, -50%);
+    /* flex: 1;
+    max-width: 50%; */
+    /* position: relative; Agar tombol bisa diposisikan secara absolut di dalam kontainer ini */
+    text-align: center; /* Memastikan teks di dalam gambar selaras tengah secara horizontal */
+}
+
+.image-section img {
+    width: 60%;
+    border-radius: 5px;
+}
+
+.image-section p {
+    margin-bottom: 10px;
+}
+
+.image-section a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.image-section a:hover {
+    text-decoration: underline;
+}
+
+.start-prediction {
+    display: block; /* Mengubah tombol menjadi elemen blok */
+    margin: 10px auto 0; /* Jarak 10px dari bawah gambar, dan otomatis terpusat */
+    background-color: #004AAD;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.start-prediction:hover {
+    background-color: #003580;
+}
+
+     /* Responsiveness for smaller screens */
+     @media (max-width: 768px) {
+        nav {
+            width: 70px; /* Smaller width for navigation */
+        }
+
+        nav:hover {
+            width: 180px; /* Adjust width when hovered */
+        }
+
+        .container {
+            margin-left: 20px;
+            margin-right: 20px;
+            padding: 20px; /* Adjust padding for smaller screens */
+            transform: translate(0); /* Center the container */
+        }
+
+        h1 {
+            font-size: 32px; /* Smaller font size for headings */
+        }
+
+        .input-group input, .grid-item input {
+            font-size: 14px; /* Reduce font size for inputs */
+            padding: 8px 8px; /* Adjust padding */
+        }
+
+        .button-group {
+            flex-direction: column; /* Stack buttons vertically */
+            align-items: stretch;
+        }
+
+        button {
+            width: 100%; /* Full width buttons */
+            margin: 10px 0; /* Add spacing between buttons */
+        }
+    }
+
+    @media (max-width: 480px) {
+        nav {
+            width: 60px; /* Even smaller width for very small screens */
+        }
+
+        nav:hover {
+            width: 150px; /* Adjust hover width */
+        }
+
+        .container {
+            padding: 15px; /* Smaller padding for very small screens */
+        }
+
+        h1 {
+            font-size: 24px; /* Further reduce heading size */
+        }
+
+        .input-group input, .grid-item input {
+            font-size: 12px; /* Smaller font size for inputs */
+        }
+    }
+
+    a.excel-button {
+    display: inline-block;
+    padding: 15px;
+    width: 100%;
+    justify-content: space-between;
+    font-size: 16px;
+    color: #ffffff; /* White text */
+    background-color: #004AAD; /* Blue background */
+    text-decoration: none; /* Remove underline */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.excel-button i {
+    margin-left: 23px; /* Tambahkan jarak antara teks dan ikon */
+}
+
+
+
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+          <li>
+            <a href="homeAdmin.html" class="logo">
+              <img src="/Asset/Logo Home.png" alt="" />
+              <span class="nav-item">Hello Admin!</span>
+            </a>
+          </li>
+          <li>
+            <a href="information1Admin.html">
+              <i class="fas fa-graduation-cap"></i>
+              <span class="nav-item2">Grade Prediction</span>
+            </a>
+          </li>
+          <li>
+            <a href="information2Admin.html">
+              <i class="fas fa-upload"></i>
+              <span class="nav-item2">Upload</span>
+            </a>
+          </li>
+          <li>
+            <a href="hasilGradePredictionAdmin.html">
+              <i class="fas fa-chart-column"></i>
+              <span class="nav-item2">Result Grade Prediction</span>
+            </a>
+          </li>
+          <li>
+            <a href="hasilRepeatAdmin.html">
+              <i class="fas fa-chart-gantt"></i>
+              <span class="nav-item2">Result Repeat Paper</span>
+            </a>
+          </li>
+          <li>
+            <a href="resultAdmin.html">
+              <i class="fas fa-chart-line"></i>
+              <span class="nav-item2">Result Analytics</span>
+            </a>
+          </li>
+          <li>
+            <a href="RegisterAdmin.html">
+              <i class="fas fa-envelope"></i>
+              <span class="nav-item2">Invite Admin</span>
+            </a>
+          </li>
+          <li>
+            <a href="LandingPageAdmin.html" class="logout">
+              <i class="fas fa-sign-out-alt"></i>
+              <span class="nav-item2">Logout</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    <div class="container">
+        <h1>Looking for more information?</h1>
+        <div class="info-section">
+            <div class="accordion">
+                <div class="accordion-item">
+                    <button class="accordion-header" onclick="toggleAccordion(this)">
+                        How to predict in year 1?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p>
+                            When uploading files, make sure your data includes the following columns:
+                        </p>
+                        <ul>
+                            <li>1. Name: (text format).</li>
+                            <li>2. Age: (numeric format).</li>
+                            <li>3, State: (text format)</li>
+                            <li>4. Total Semester of Pre-University: (numeric format).</li>
+                            <li>5. Average CGPA of Pre-University: (decimal format, e.g. 3.50).</li>
+                            <li>6. Final CGPA of Pre-University: (decimal format, e.g. 3.75).</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header" onclick="toggleAccordion(this)">
+                        How to predict in year 2?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p>
+                            When uploading files, make sure your data includes the following columns:
+                        </p>
+                        <ul>
+                            <li>1. Name: (text format).</li>
+                            <li>2. Age: (numeric format).</li>
+                            <li>3. State: (text format)</li>
+                            <li>4. Total Semester of Pre-University: (numeric format).</li>
+                            <li>5. Average CGPA of Pre-University: (decimal format, e.g. 3.50).</li>
+                            <li>6. Final CGPA of Pre-University: (decimal format, e.g. 3.75).</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-header" onclick="toggleAccordion(this)">
+                        Steps
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>1. Click the "Upload" button on the prediction page.</li>
+                            <li>2. Select the file containing the data to be predicted.</li>
+                            <li>3. Check that the file is in the specified format.</li>
+                            <li>4. Click "Submit" to start the prediction process.</li>
+                            <li>5. Wait for the system to display your prediction results.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="margin: 10px 0 30px;">
+                    <a href="/Asset/Template Data Student.xlsx" class="excel-button" download>
+                         Download Excel Template <i class="fa-solid fa-download"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="image-section"> <!-- Added image section -->
+                <img src="/Asset/Looking Information.png" alt="Collaboration">
+                <button class="start-prediction" id="startPrediction">Start Prediction</button> <!-- Start Prediction Button -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Fungsi untuk toggle accordion
+        function toggleAccordion(button) {
+            const content = button.nextElementSibling;
+            const isActive = content.style.display === 'block';
+
+            // Reset semua accordion
+            document.querySelectorAll('.accordion-content').forEach(item => {
+                item.style.display = 'none';
+            });
+            document.querySelectorAll('.accordion-header i').forEach(icon => {
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
+            });
+
+            // Toggle current accordion
+            if (!isActive) {
+                content.style.display = 'block';
+                const icon = button.querySelector('i');
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+            }
+        }
+
+        // Event listener untuk tombol "Start Prediction"
+        document.getElementById('startPrediction').addEventListener('click', () => {
+            window.location.href = 'FeatureAdmin.html'; // Ganti dengan URL tujuan Anda
+        });
+    </script>
+</body>
+</html>
+

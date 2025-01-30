@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Result Analytics</title>
+    <!-- <link rel="stylesheet" href="abc.css"> -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        outline: none;
+        border: none;
+        text-decoration: none;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        background: #dfe9f5;
+      }
+
+      nav {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        height: 100%;
+        left: 0;
+        background: white;
+        width: 90px;
+        overflow: hidden;
+        transition: width 0.2s linear;
+        box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+        z-index: 2;
+      }
+
+      .logo {
+        text-align: center;
+        display: flex;
+        transition: all 0.5s ease;
+        margin: 10px 0 0 10px;
+      }
+
+      .logo img {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+      }
+
+      .logo span {
+        font-weight: bold;
+        padding: 0px;
+        font-size: 18px;
+        text-transform: uppercase;
+      }
+
+      a {
+        position: relative;
+        color: #004aad;
+        font-size: 14px;
+        display: table;
+        width: 300px;
+        padding: 10px;
+      }
+
+      .fas {
+        position: relative;
+        width: 70px;
+        height: 40px;
+        top: 14px;
+        font-size: 20px;
+        text-align: center;
+      }
+
+      .nav-item {
+        position: relative;
+        top: 12px;
+        margin-left: 25px;
+      }
+
+      .nav-item2 {
+        position: relative;
+        top: 12px;
+        margin-left: 10px;
+      }
+
+      a:hover {
+        background: #eee;
+      }
+
+      nav:hover {
+        width: 280px;
+        transition: all 0.5s ease;
+      }
+
+      .logout {
+        position: absolute;
+        bottom: 0;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin-top: 30px;
+        margin-left: 30px;
+        margin-right: 70px;
+        padding: 100px;
+        display: flex;
+        flex-direction: column;
+        border-radius: 10px;
+        transform: translate(140px);
+        background-color: white;
+        align-items: stretch;
+      }
+
+      h1 {
+        color: #004aad;
+        text-align: center;
+        font-weight: bold;
+        font-size: 48px;
+      }
+      #chartContainer {
+        width: 100%;
+        height: 400px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+      }
+      #resultChart {
+        width: 1000px;
+        height: 600px;
+      }
+
+           /* Responsiveness for smaller screens */
+           @media (max-width: 768px) {
+        nav {
+            width: 70px; /* Smaller width for navigation */
+        }
+
+        nav:hover {
+            width: 180px; /* Adjust width when hovered */
+        }
+
+        .container {
+            margin-left: 20px;
+            margin-right: 20px;
+            padding: 20px; /* Adjust padding for smaller screens */
+            transform: translate(0); /* Center the container */
+        }
+
+        h1 {
+            font-size: 32px; /* Smaller font size for headings */
+        }
+
+        .input-group input, .grid-item input {
+            font-size: 14px; /* Reduce font size for inputs */
+            padding: 8px 8px; /* Adjust padding */
+        }
+
+        .button-group {
+            flex-direction: column; /* Stack buttons vertically */
+            align-items: stretch;
+        }
+
+        button {
+            width: 100%; /* Full width buttons */
+            margin: 10px 0; /* Add spacing between buttons */
+        }
+    }
+
+    @media (max-width: 480px) {
+        nav {
+            width: 60px; /* Even smaller width for very small screens */
+        }
+
+        nav:hover {
+            width: 150px; /* Adjust hover width */
+        }
+
+        .container {
+            padding: 15px; /* Smaller padding for very small screens */
+        }
+
+        h1 {
+            font-size: 24px; /* Further reduce heading size */
+        }
+
+        .input-group input, .grid-item input {
+            font-size: 12px; /* Smaller font size for inputs */
+        }
+    }
+
+    </style>
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li>
+          <a href="homeAdmin.html" class="logo">
+            <img src="/Asset/Logo Home.png" alt="" />
+            <span class="nav-item">Hello Admin!</span>
+          </a>
+        </li>
+        <li>
+          <a href="information1Admin.html">
+            <i class="fas fa-graduation-cap"></i>
+            <span class="nav-item2">Grade Prediction</span>
+          </a>
+        </li>
+        <li>
+          <a href="information2Admin.html">
+            <i class="fas fa-upload"></i>
+            <span class="nav-item2">Upload</span>
+          </a>
+        </li>
+        <li>
+          <a href="hasilGradePredictionAdmin.html">
+            <i class="fas fa-chart-column"></i>
+            <span class="nav-item2">Result Grade Prediction</span>
+          </a>
+        </li>
+        <li>
+          <a href="hasilRepeatAdmin.html">
+            <i class="fas fa-chart-gantt"></i>
+            <span class="nav-item2">Result Repeat Paper</span>
+          </a>
+        </li>
+        <li>
+          <a href="resultAdmin.html">
+            <i class="fas fa-chart-line"></i>
+            <span class="nav-item2">Result Analytics</span>
+          </a>
+        </li>
+        <li>
+          <a href="RegisterAdmin.html">
+            <i class="fas fa-envelope"></i>
+            <span class="nav-item2">Invite Admin</span>
+          </a>
+        </li>
+        <li>
+          <a href="LandingPageAdmin.html" class="logout">
+            <i class="fas fa-sign-out-alt"></i>
+            <span class="nav-item2">Logout</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="container">
+      <h1>Result Analytics</h1><br>
+      <div id="chartContainer">
+        <canvas id="resultChart"></canvas>
+      </div>
+    </div>
+    <script type="module">
+      import { resultAnalytics } from "./service.js";
+
+      const token = localStorage.getItem("auth-token-admin");
+      if (!token) {
+        Swal.fire({
+          icon: "warning",
+          title: "Access Denied",
+          text: "You need to login to access this page.",
+        }).then(() => {
+          window.location.href = "loginAdmin.html";
+        });
+      }
+
+      const ctx = document.getElementById("resultChart").getContext("2d");
+
+      async function analyticsResult(token) {
+        const result = await resultAnalytics(token);
+
+        return result;
+      }
+
+      const { data } = await analyticsResult(token);
+      // Chart labels (semesters)
+      const labels = [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+      ];
+      console.log(data);
+
+      // Initialize datasets
+      const datasets = {
+        Y: new Array(labels.length).fill(0), // For "Yes"
+        N: new Array(labels.length).fill(0), // For "No"
+      };
+
+      // Populate datasets with backend data
+      // Normalize and populate datasets with backend data
+      data.forEach(({ result, semester, count }) => {
+        const normalizedResult =
+          result === "YES" ? "Y" : result === "NO" ? "N" : result;
+        const index = labels.indexOf(String(semester));
+        if (
+          index !== -1 &&
+          (normalizedResult === "Y" || normalizedResult === "N")
+        ) {
+          datasets[normalizedResult][index] += parseInt(count, 10);
+        } else {
+          console.warn(`Unexpected result value: ${result}`);
+        }
+      });
+
+      // Chart.js integration
+      const resultChart = new Chart(ctx, {
+        type: "line",
+        data: {
+          labels, // Predefined semester labels
+          datasets: [
+            {
+              label: "Yes",
+              data: datasets.Y, // Populated "Yes" data
+              borderColor: "rgb(255, 99, 132)",
+              backgroundColor: "rgba(255, 99, 132, 0.2)",
+              fill: false,
+              tension: 0.1,
+            },
+            {
+              label: "No",
+              data: datasets.N, // Populated "No" data
+              borderColor: "rgb(75, 192, 192)",
+              backgroundColor: "rgba(75, 192, 192, 0.2)",
+              fill: false,
+              tension: 0.1,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              display: true,
+              labels: {
+                color: "#000",
+                usePointStyle: true,
+              },
+            },
+            // title: {
+            //   display: true,
+            //   text: "Result Chart",
+            //   color: "#1a73e8",
+            //   font: {
+            //     size: 24,
+            //   },
+            // },
+          },
+          scales: {
+            x: {
+              title: {
+                display: true,
+                text: "Semester",
+                color: "#000",
+              },
+            },
+            y: {
+              title: {
+                display: true,
+                text: "Values",
+                color: "#000",
+              },
+              beginAtZero: true,
+            },
+          },
+        },
+      });
+
+      document.querySelector(".logout").addEventListener("click", (e) => {
+        e.preventDefault(); // Mencegah tindakan default
+
+        // Tampilkan konfirmasi menggunakan Swal.fire
+        Swal.fire({
+          title: "Are you sure?",
+          text: "You will be logged out and redirected to the login page.",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, logout",
+          cancelButtonText: "No, cancel",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // Hapus token dari localStorage
+            localStorage.removeItem("auth-token-admin");
+
+            // Tampilkan pesan sukses
+            Swal.fire({
+              icon: "success",
+              title: "Logged Out",
+              text: "You have been successfully logged out.",
+            }).then(() => {
+              // Redirect ke halaman login
+              window.location.href = "LandingPageAdmin.html";
+            });
+          }
+        });
+      });
+      
+    </script>
+  </body>
+</html>
