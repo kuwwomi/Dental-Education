@@ -5,324 +5,516 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Academic Performance Prediction</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
   <style>
-        body {
-        font-family: 'Arial', sans-serif;
-        padding-top: 80px;
-        }
+    body {
+      font-family: 'Arial', sans-serif;
+      padding-top: 40px;
+    }
 
-        .navbar {
-        position: fixed; /* Navbar tetap di posisi atas layar */
-        top: 0; /* Tetap berada di bagian paling atas */
-        left: 0; /* Menempel di sisi kiri */
-        width: 100%; /* Lebar penuh */
-        background-color: #3164F4; /* Warna biru */
-        z-index: 1000; /* Agar di atas konten lain */
-        padding: 1.5rem 2rem; /* Memperlebar navbar */
-        text-align: center;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Efek bayangan */
-        }
+    .navbar {
+      position: fixed; /* Navbar tetap di posisi atas layar */
+      top: 0; /* Tetap berada di bagian paling atas */
+      left: 0; /* Menempel di sisi kiri */
+      width: 100%; /* Lebar penuh */
+      background-color: #155ACA; /* Warna biru */
+      z-index: 1000; /* Agar di atas konten lain */
+      padding: 1.5rem 2rem; /* Memperlebar navbar */
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Efek bayangan */
+      margin-bottom: 100px;
+    }
 
-        .navbar a {
-        color: white;
-        margin: 0 1.5rem; /* Menambah jarak antar link */
-        text-decoration: none;
-        font-weight: bold;
-        font-size: 20px;
-        }
+    .navbar a {
+      color: white;
+      margin: 0 1.5rem; /* Menambah jarak antar link */
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 20px;
+    }
 
-        .navbar a:hover {
-        text-decoration: underline;
-        }
+    .navbar a:hover {
+      text-decoration: underline;
+    }
 
-        .hero-section {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 2rem;
-        background-color: #fff;
-        margin-top: 120px; /* Menambah jarak antara navbar dan hero-section */
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Bayangan pada hero section */
-        }
+    .hero-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2rem;
+      background-color: #fff;
+      margin-top: 140px; /* Menambah jarak antara navbar dan hero-section */
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Bayangan pada hero section */
+    }
 
-        .hero-section.container {
-        background: linear-gradient(180deg, #fff, #3164F4 1000%);
-        max-width: 1200px; /* Mengatur lebar maksimum */
-        margin: 0 auto; /* Menjaga konten tetap di tengah */
-        border-radius: 15px;
-        }
+    .hero-section.container {
+      background: linear-gradient(180deg, #fff, #155ACA 1000%);
+      max-width: 1300px; /* Mengatur lebar maksimum */
+      margin: 0 auto; /* Menjaga konten tetap di tengah */
+      border-radius: 15px;
+    }
 
-        .hero-section img {
-        max-width: 630px;
-        }
+    .hero-section img {
+      max-width: 630px;
+    }
 
-        .hero-content {
-        max-width: 600px;
-        }
+    .hero-content {
+      max-width: 600px;
+    }
 
-        .hero-title {
-        font-size: 2.5rem;
-        font-weight: bold;
+    .hero-title {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #3164F4;
+    }
+
+    .hero-description {
+      font-size: 1.25rem;
+      color: #00AC59;
+      margin: 1rem 0;
+    }
+
+    .hero-button {
+      background-color: #3164F4;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+      margin-top: 20px; /* Tambahkan jarak antara tombol dan deskripsi */
+    }
+
+    .hero-button:hover {
+      background-color: #1e40af;
+    }
+
+    .about-us {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      padding: 50px;
+      border-radius: 10px;
+      background: linear-gradient(180deg, #fff,#3164F4 1000%);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      max-width: 1230px;
+      margin: 50px auto;
+    }
+
+    .about-us img {
+      max-width: 350px;
+      border-radius: 10px;
+      margin-left: -100px;
+    }
+
+    .about-us .about-content {
+      max-width: 500px;
+      text-align: left;
+    }
+
+    .about-us h1 {
+      font-size: 2.9rem;
+      color: #3164F4;
+      margin-bottom: 15px;
+      font-weight: bold;
+
+    }
+
+    .about-us p {
+      font-size: 1.3rem;
+      color: #555;
+      line-height: 1.5;
+      text-align: justify;
+      margin-right: -80px;
+    }
+
+    .gallery{
+      width: 1000px;
+      display: flex;
+      overflow-x: scroll;
+      margin-top: 40px;
+    }
+
+    .gallery div{
+      width: 110%;
+      display: grid;
+      grid-template-columns: auto auto auto;
+      grid-gap: 20px;
+      padding: 20px;
+      flex: none;
+    }
+
+    .gallery div img{
+      width: 1010%;
+      filter: grayscale(0%);
+      transition: transform 0.5s;
+    }
+
+    .gallery::-webkit-scrollbar{
+      display: none;
+    }
+
+    .gallery-wrap{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      margin: 10% auto;
+    }
+
+    .gallery-wrap h3 {
+      position: absolute;
+      top: -50px; /* Sesuaikan jarak dari atas */
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 3.5rem;
+      font-weight: bold;
+      color: #3164F4;
+    }
+
+    #backBtn, #nextBtn{
+      width: 50px;
+      cursor: pointer;
+      margin: 40px;
+    }
+
+    .gallery div img:hover{
+      filter: grayscale(0);
+      cursor: pointer;
+      transform: scale(1.1);
+    }
+
+          /* Styling for left and right buttons */
+      .gallery-wrap i {
+        font-size: 40px;
         color: #3164F4;
+        cursor: pointer;
+        transition: transform 0.2s, color 0.3s;
+      }
+
+      .gallery-wrap i:hover {
+        color: #3164F4;
+        transform: scale(1.1);
+      }
+
+
+        .footer {
+            background-color:#3164F4;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            font-size: 1.2rem;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1600px;
+            margin: auto;
+            flex-wrap: wrap;
+            padding: 0 100px;
+            font-size: 1.3rem;
+        }
+        .footer div {
+            padding: 10px;
+        }
+        .footer-left {
+            text-align: left;
+            flex: 1;
+        }
+        .footer-right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            text-align: right;
+        }
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            text-align: right;
+            width: 100%;
+        }
+        .footer hr {
+            border: 0;
+            height: 1px;
+            background-color: white;
+            margin: 20px 0;
+        }
+        .footer a {
+            color: white;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
         }
 
-        .hero-description {
-        font-size: 1.25rem;
-        color: #00AC59;
-        margin: 2rem 0;
-        }
+        .footer a {
+    font-size: 1.2rem;
+}
 
-        .hero-button {
-        background-color: #3164F4;
-        color: white;
-        padding: 0.75rem 1.5rem;
-        border-radius: 0.5rem;
-        text-decoration: none;
-        font-weight: bold;
-        }
+.footer-contact span {
+    font-size: 1.2rem;
+}
 
-        .hero-button:hover {
-        background-color: #1e40af;
-        }
+        /* Pastikan seluruh section berada di tengah */
+.container-service {
+    text-align: center;
+    max-width: 1200px;
+    margin: auto;
+    padding: 40px 20px;
+}
 
-        .services {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 50px;
-        margin-left: 130px;
-        justify-content: center;
-        padding: 50px;
-        text-align: center;
-        }
+/* Styling untuk judul */
+.container-service h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #2C5ADC;
+    margin-bottom: 20px;
+}
 
-        .services h1 {
-            font-size: 2rem;
-            color: #1d4ed8;
-            margin-bottom: 50px;
-            text-align: center; /* Menengahkan teks */
-            width: 100%; /* Memastikan seluruh lebar tersedia */
-        }
+/* Layout grid untuk memastikan tata letak responsif */
+.services {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px 0;
+}
 
-        .service-card {
-        background: linear-gradient(180deg, #fff, #3164F4 1000%);
-        color: white;
-        border-radius: 12px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        width: 300px;
-        height: 400px;
-        display: flex;
+/* Styling untuk setiap kartu layanan */
+.service-card {
+   background: linear-gradient(180deg, #fff, #3164F4 1000%);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 350px;
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Efek hover untuk kartu */
+.service-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Gaya gambar dalam kartu */
+.service-card img {
+    max-width: 80%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+/* Gaya teks dalam kartu */
+.service-card h3 {
+    font-size: 1.3rem;
+    color: #3164F4;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.service-card p {
+    font-size: 1.1rem;
+    color: #3164F4;
+    line-height: 1.4;
+}
+
+/* Responsif untuk layar kecil */
+@media (max-width: 768px) {
+    .services {
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        padding: 20px;
-        text-align: center;
-        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .service-card {
+        width: 90%;
+    }
+}
+
+        
+         /* Collaborators Section */
+         .collaborators-container {
+          background: #fff;
+          padding: 5px;
+          border-radius: 15px;
+          box-shadow: 0 0 10px rgba(1, 1, 1, 0.5);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          max-width: 1000px;
+          margin: auto;
+          margin-bottom: 60px;
+          margin-top: 30px;
         }
-
-        .service-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        .collaborators-grid {
+          display: grid;
+          grid-template-columns: repeat(2, auto); /* Dua kolom */
+          grid-template-rows: repeat(2, auto);    /* Dua baris */
+          gap: 20px;
+          width: 90%; 
         }
-
-        .service-card img {
-        width: 250px;
-        margin-bottom: 15px;
-        object-fit: contain;
-        }
-
-        .service-card h3 {
-        font-size: 1.25rem;
-        color: #2C5ADC;
-        font-weight: bold;
-        margin-bottom: 10px;
-        }
-
-        .service-card p {
-        font-size: 0.9rem;
-        color: #3164F4;
-        min-height: 48px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        }
-
-        .about-us {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 20px;
-        padding: 50px;
-        border-radius: 10px;
-        background: linear-gradient(180deg, #fff, #3164F4 1000%);
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        max-width: 1230px;
-        margin: 50px auto;
-        }
-
-        .about-us img {
-        max-width: 350px;
-        border-radius: 10px;
-        margin-left: -100px;
-        }
-
-        .about-us .about-content {
-        max-width: 500px;
-        text-align: left;
-        }
-
-        .about-us h1 {
-        font-size: 2.9rem;
-        color: #3164F4;
-        margin-bottom: 15px;
-        font-weight: bold;
-
-        }
-
-        .about-us p {
-        font-size: 1.3rem;
-        color: #555;
-        line-height: 1.5;
-        text-align: justify;
-        margin-right: -80px;
-        }
-
-        .features-container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 30px auto; /* Menambahkan jarak atas-bawah */
-            padding: 50px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .features {
-            text-align: center;
-            padding: 30px;
-        }
-
-        .features h2 {
-            font-size: 36px;
-            margin-bottom: 30px; /* Kurangi jarak bawah */
-            margin-top: -70px;
-            color: #3164F4;
-            text-align: center;
-            font-weight: bold;
-        }
-
-        /* Grid untuk Foto */
-        .features-grid {
-            display: flex;
-            gap: 30px;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
-        .feature-item {
-            background: linear-gradient(180deg, #fff, #3164F4 700%);
-            padding: 10px; /* Spasi di sekitar gambar */
-            border-radius: 15px; /* Membuat sudut melengkung */
-        }
-
-        .feature-item img {
-            width: 200px; /* Atur ukuran gambar */
+        .collaborators-grid img {
+            max-width: 390px;
             height: auto;
-            border-radius: 10px;
-            margin-bottom: -10px;
         }
 
-        /* Grid untuk Nama */
-        .names-grid {
-            display: flex;
-            gap: 90px;
-            justify-content: center; /* Sejajarkan nama dengan gambar */
+        .left {
+            justify-self: start;  /* Geser ke kiri */
+            padding-left: 90px;
+            margin-top: 40px;
+            margin-bottom: 30px;
         }
 
-        .name-item {
+        .right {
+            justify-self: end;    /* Geser ke kanan */
+            padding-right: 90px;
+            margin-top: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .container-collab p{
+          font-size: 1.5rem;
+          text-align: center;
+          color: #3164F4;
+        }
+        
+        h2 {
+          font-size: 2.5rem;
+          color: #3164F4;
+          margin-bottom: 20px;
+          font-weight: bold;
+          text-align: center;
+          padding-bottom: 5px;
+          margin-top: 50px;
+        }
+
+        .faq-title {
+            color: #3164F4;
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
             text-align: center;
         }
+        .faq-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            justify-content: center;
+            gap: 70px; /* Tambahkan jarak antar box */
+            padding: 10px;
+            max-width: 1250px; /* Batasi lebar agar tetap terpusat */
+            margin: 0 auto; /* Pusatkan container secara keseluruhan */
+        }
 
-        .name-item .name {
+
+        .faq-box {
+          background: linear-gradient(180deg, #fff,#3164F4 1000%);
+            width: 370px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            justify-content: center;
+            text-align: center;
+            align-items: center;
+        }
+        .faq-box .faq-title {
             font-size: 18px;
             font-weight: bold;
-            color: #3164F4;
-            margin: 5px 0 0;
+            color: #333;
         }
-
-        .name-item .name span {
-            font-weight: 700;
+        .faq-question {
+            font-size: 18px;
+            margin: 10px 0;
+            color: black;
         }
-
-        .name-item .position {
-            font-size: 16px;
-            color: #00AC59;
+        .faq-answer {
+    background: #eef2ff;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 14px;
+    color: black;
+    text-align: center; /* Pusatkan teks */
+    display: flex; /* Gunakan flexbox */
+    justify-content: center; /* Pusatkan horizontal */
+    align-items: center; /* Pusatkan vertikal */
+    min-height: 50px; /* Berikan tinggi minimum agar tetap rapi */
+}
+        .answer-button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            text-align: center;
+            font-size: 14px;
             margin-top: 5px;
         }
 
-        .collaborators-title{
-          font-weight: bold;
-          font-size: 2rem;
-          color: #3164F4;
-        }
+        .faq-description {
+    text-align: justify; /* Rata kanan-kiri */
+}
 
-        .collaborators-grid {
-            display: flex;
-            justify-content: center; /* Memusatkan secara horizontal */
-            align-items: center; /* Memusatkan secara vertikal jika diperlukan */
-            flex-wrap: wrap; /* Agar responsif */
-            gap: 20px; /* Menambah jarak antar elemen */
-        }
+.faq-description i.fa-circle-check {
+    color: #3164F4; /* Warna ikon hijau */
+    margin-right: 8px; /* Beri jarak antara ikon dan teks */
+}
 
-        .collaborator-card {
-            background-color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-            width: 300px; /* Sesuaikan lebar sesuai kebutuhan */
+
+        
+        
+        @media (max-width: 768px) {
+            .services, .collaborators-grid {
+                flex-direction: column;
+            }
         }
 
   </style>
 </head>
 <body class="font-sans">
-  <nav class="navbar">
-    <a href="#">Information</a>
-    <a href="#">About</a>
-    <a href="#">Contact Us</a>
-    <a href="#">Feedback</a>
-  </nav>
 
   <section class="hero-section container mx-auto">
     <div class="hero-image">
       <img src="/Asset/logo dental.png" alt="Illustration">
     </div>
     <div class="hero-content">
-      <h1 class="hero-title">Welcome to Academic Performance Prediction Platform</h1>
-      <p class="hero-description">Prediction of Student Academic Performance <br>in Pre-Clinical Dentistry</p>
+      <h1 class="hero-title">Welcome to Precident-AI Platform</h1>
+      <p class="hero-description">Prediction of Academic Performance in Dentistry <br> using Artificial Intelligence.</p>
       <a href="Logsig.html" class="hero-button">Get Started</a>
     </div>
-  </section>
+  </section>                
 
-  <section class="container mt-16">
-    <h1 class="text-center text-5xl font-bold text-blue-600 mb-6 mr-700 ml-40">Our Services</h1>
+  <section class="container-service">
+    <h1 class="text-center text-5xl font-bold text-blue-600 mt-12 mb-10 mr-700 ml-49">Our Services</h1>
     <div class="services">
-      <div class="service-card">
-        <img src="/Asset/Early Risk Identification Logo.png" alt="Early Risk Identification">
-        <h3>Early Risk Identification</h3>
-        <p>Enables universities to detect potential <br>academic issues early on.</p>
-      </div>
-      <div class="service-card">
-        <img src="/Asset/Machine Learning Optimization Logo.png" alt="Machine Learning Optimization">
-        <h3>Machine Learning Optimization</h3>
-        <p>Our system leverages machine learning <br>algorithms to analyze student data.</p>
-      </div>
-      <div class="service-card">
-        <img src="/Asset/Improved Performance Academic Logo.png" alt="Improved Performance Academic">
-        <h3>Improved Performance Academic</h3>
-        <p>By identifying risks earlier, students can <br>receive better support.</p>
-      </div>
+        <div class="service-card">
+            <img src="/Asset/Early Risk Identification Logo.png" alt="Service 1">
+            <h3>Early Risk Identification</h3>
+            <p>Enables universities to detect potential academic issues early on.</p>
+        </div>
+        <div class="service-card">
+            <img src="/Asset/Machine Learning Optimization Logo.png" alt="Service 2">
+            <h3>Machine Learning Optimization</h3>
+            <p>Our system leverages machine learning algorithms to analyze student data.</p>
+        </div>
+        <div class="service-card">
+            <img src="/Asset/Improved Performance Academic Logo.png" alt="Service 3">
+            <h3>Improved Performance Academic</h3>
+            <p>By identifying risks earlier, students can receive better support.</p>
+        </div>
     </div>
-  </section>
+</section>
+
 
   <section class="about-us">
     <img src="/Asset/About Us Logo.png" alt="Stack of books with an apple">
@@ -331,49 +523,158 @@
       <p>We are committed to helping pre-clinical dental students succeed by offering predictive insights based on admission data and machine learning models. Our goal is to identify students who may need additional support and provide actionable recommendations for better academic outcomes.</p>
     </div>
   </section>
+  <div class="gallery-wrap">
+    <h3>Our Team</h3>
+    <i id="backBtn" class="fa-solid fa-circle-arrow-left"></i>
+    <div class="gallery">
+      <div>
+        <span><img src="/Asset/Tambahkan subjudul.png"></span>
+        <span><img src="/Asset/5.png"></span>
+        <span><img src="/Asset/6.png"></span>
+      </div>
+      <div>
+        <span><img src="/Asset/8.png"></span>
+        <span><img src="/Asset/4.png"></span>
+        <span><img src="/Asset/Tambahkan subjudul.png"></span>
+      </div>
+      <div>
+        <span><img src="/Asset/1 (1).png"></span>
+        <span><img src="/Asset/2 (1).png"></span>
+        <span><img src="/Asset/3 (1).png"></span>
+      </div>
+    </div>
+    <i id="nextBtn" class="fa-solid fa-circle-arrow-right"></i>
+  </div>
 
-  <!-- Our Features Section -->
-  <div class="features-container">
-    <section class="features">
-        <h2>OUR TEAM</h2>
-        <div class="features-grid">
-            <div class="feature-item">
-                <img src="/Asset/Our Team(Lala).png" alt="Siti Nabilah">
-            </div>
-            <div class="feature-item">
-                <img src="/Asset/Our Team(Murti).png" alt="Murtiasih">
-            </div>
-            <div class="feature-item">
-                <img src="/Asset/Our Team(Sani).png" alt="Sani Maulida Hidayat">
+  <h1 class="faq-title">Frequently Asked Questions</h1>
+      <div class="faq-container">
+          <div class="faq-box">
+              <div class="faq-title">Questions</div>
+              <div class="faq-question">How does Precident-AI work?</div>
+              <button class="answer-button">Answer</button>
+              <p class="faq-description">
+                <i class="fas fa-circle-check"></i>Precident-AI uses machine learning models to analyze students' academic data. By inputting relevant data, the system predicts whether a student will pass or need to retake a course.
+              </p>
+          </div>
+          <div class="faq-box">
+              <div class="faq-title">Questions</div>
+              <div class="faq-question">What do the prediction results mean?</div>
+              <button class="answer-button">Answer</button>
+              <p class="faq-description">
+                <i class="fas fa-circle-check"></i>The prediction results from Precident-<br>AI can be:<br>
+                - Yes Repeat Paper: The student is predicted to repeat the course.<br>
+                - No Repeat Paper: The student is predicted not to repeat the course.<br>
+                - PASS: The student has passed the course.<br>
+                - FAIL: The student has failed the course.
+              </p>
+          </div>
+          <div class="faq-box">
+              <div class="faq-title">Questions</div>
+              <div class="faq-question">Are the predictions 100% accurate?</div>
+              <button class="answer-button">Answer</button>
+              <p class="faq-description">
+                <i class="fa-solid fa-circle-check"></i>No. Precident-AI provides predictions based on available data and the machine learning model used. Although the model has been trained with relevant data, the final outcome still depends on the student's effort and other academic factors.
+              </p>
+          </div>
+          <div class="faq-box">
+              <div class="faq-title">Questions</div>
+              <div class="faq-question">Can this platform be used for fields other than dentistry?</div>
+              <button class="answer-button">Answer</button>
+              <p class="faq-description">
+                <i class="fa-solid fa-circle-check"></i>Currently, Precident-AI is focused on predicting the academic performance of dental students. However, future developments may expand its use to other fields as needed.
+              </p>
+          </div>
+          <div class="faq-box">
+              <div class="faq-title">Questions</div>
+              <div class="faq-question">Who can use this platform?</div>
+              <button class="answer-button">Answer</button>
+              <p class="faq-description">
+                <i class="fa-solid fa-circle-check"></i>This platform can be used by:<br>
+                - Dental students to understand their academic potential.<br>
+                - Lecturers and academic staff to identify students at risk of academic difficulties.<br>
+                - Academic administration to design better learning strategies.
+              </p>
+          </div>
+          <div class="faq-box">
+              <div class="faq-title">Questions</div>
+              <div class="faq-question">What should I do if I receive a prediction of 'Yes Repeat Paper' or 'FAIL'?</div>
+              <button class="answer-button">Answer</button>
+              <p class="faq-description">
+                <i class="fa-solid fa-circle-check"></i>If you receive such predictions, it is recommended that you:<br>
+                - Consult with your lecturer or academic advisor.<br>
+                - Utilize additional resources such as tutoring or study groups.<br>
+                - Improve study strategies to enhance understanding of course material.
+              </p>
+          </div>
+      </div>
+  
+
+   <!-- Our Collaborators Section -->
+   <section class="container-collab">
+    <h2>Our Collaborators</h2>
+    <p>A special thank you to all our partners who have contributed to making this project a reality</p>
+    <div class="collaborators-container">
+        <div class="collaborators-grid">
+            <img src="/Asset/image 1.png" alt="Collaborator 1" class="left">
+            <img src="/Asset/image 2.png" alt="Collaborator 2" class="right">
+            <img src="/Asset/iium-logo.png" alt="Collaborator 3" class="left">
+            <img src="/Asset/KOD Logo 2.png" alt="Collaborator 4" class="right">
+        </div>
+    </div>
+  </section>
+  
+  <footer class="footer">
+    <div class="footer-content">
+        <div class="footer-left" style="margin-left: 80px;">
+            <strong>International Islamic University Malaysia</strong><br>
+            P.O. Box 10, 50728 Kuala Lumpur
+        </div>
+        <div class="footer-right" style="margin-right: 80px;">
+            <strong>Contact Us</strong>
+            <div class="footer-contact">
+                <span>Phone : (+603) 6421 6421</span>
+                <span>Fax : (+603) 6421 4053</span>
+                <span>Email : <a href="mailto:webmaster@iium.edu.my">webmaster@iium.edu.my</a></span>
             </div>
         </div>
-        
-        <div class="names-grid">
-            <div class="name-item">
-                <p class="name">Siti <span>Nabilah</span></p>
-                <p class="position">Machine Learning Engineer</p>
-            </div>
-            <div class="name-item">
-                <p class="name">Murtiasih</p>
-                <p class="position">Frontend Developer</p>
-            </div>
-            <div class="name-item">
-                <p class="name">Sani <span>Maulida Hidayat</span></p>
-                <p class="position">Backend Developer</p>
-            </div>
-        </div>   
-    </section>
-</div>
-
- <!-- Our Collaborators Section -->
- <!-- <section class="container mt-16 text-center">
-  <h1 class="collaborators-title">Our Collaborators</h1>
-  <div class="collaborators-grid">
-    <div class="collaborator-card">
-      <img src="/Asset/Collaborator1.png" alt="Collaborator 1" class="collaborator-image">
     </div>
-  </div>
-</section> -->
+    <hr>
+    <div>
+        &copy; <span id="year"></span> <strong>Academic Performance Prediction Platform</strong>. All rights reserved.
+    </div>
+  </footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+
+document.getElementById("year").textContent = new Date().getFullYear();
+     let scrollContainer = document.querySelector(".gallery");
+      let backBtn = document.querySelector("#backBtn");
+      let nextBtn = document.querySelector("#nextBtn");
+
+      if (scrollContainer && nextBtn && backBtn) {
+          scrollContainer.addEventListener("wheel", (evt) => {
+              evt.preventDefault();
+              scrollContainer.scrollLeft += evt.deltaY;
+              scrollContainer.style.scrollBehavior = "auto";
+          });
+
+          nextBtn.addEventListener("click", () => {
+              scrollContainer.style.scrollBehavior = "smooth";
+              scrollContainer.scrollLeft += 900;
+          });
+
+          backBtn.addEventListener("click", () => {
+              scrollContainer.style.scrollBehavior = "smooth";
+              scrollContainer.scrollLeft -= 900;
+          });
+      } else {
+          console.error("Elemen tidak ditemukan. Periksa querySelector.");
+      }
+
+
+  </script>
 
 </body>
 </html>

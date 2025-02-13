@@ -63,7 +63,7 @@
 
       a {
         position: relative;
-        color: #004aad;
+        color: #155ACA;
         font-size: 14px;
         display: table;
         width: 300px;
@@ -122,7 +122,7 @@
       h1 {
         text-align: center;
         font-size: 48px;
-        color: #004aad;
+        color: #155ACA;
         margin-bottom: 40px;
       }
 
@@ -208,11 +208,11 @@
       }
 
       .cancel-btn {
-        background-color: #004aad;
+        background-color: #155ACA;
       }
 
       .predict-btn {
-        background-color: #004aad;
+        background-color: #155ACA;
       }
 
       button:hover {
@@ -283,7 +283,7 @@
     <nav>
       <ul>
         <li>
-          <a href="home.html" class="logo">
+          <a href="#" class="logo">
             <img src="/Asset/Logo Home.png" alt="" />
             <span class="nav-item">DENTAL EDUCATION</span>
           </a>
@@ -340,11 +340,6 @@
           <!-- <label for="age">Age</label> -->
           <input type="number" id="userAge" placeholder="Age" required />
         </div>
-
-        <div class="input-group">
-          <input type="string" id="state" placeholder="OralValue " required />
-        </div>
-
         <div class="input-group">
           <!-- <label for="semester">Total Semester of Pre-University</label> -->
           <input
@@ -417,7 +412,6 @@
           // Ambil nilai input
           const name = document.getElementById("userName").value;
           const age = parseInt(document.getElementById("userAge").value, 10);
-          const state = parseInt(document.getElementById("state").value, 10);
           const semester = parseInt(
             document.getElementById("userSemester").value,
             10
@@ -432,7 +426,6 @@
           if (
             !name ||
             !age ||
-            !state ||
             !semester ||
             !average_cgpa ||
             !final_cgpa
@@ -452,7 +445,6 @@
               type: "dental-material",
               name,
               age,
-              state,
               semester,
               average_cgpa,
               final_cgpa,
@@ -470,8 +462,10 @@
 
             Swal.fire({
               icon: "success",
-              title: "Prediction Success",
-              text: prediction.data.result,
+              title: prediction.data.result,
+              text: "Prediction Succses"
+            }).then(() => {
+              window.location.href = "hasilGradePrediction.html"; // Ganti dengan halaman tujuan
             });
           } catch (error) {
             Swal.fire({

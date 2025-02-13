@@ -70,7 +70,7 @@ nav {
 
 a {
     position: relative;
-    color: #004AAD;
+    color: #155ACA;
     font-size: 14px;
     display: table;
     width: 300px;
@@ -177,15 +177,15 @@ nav:hover {
 }
 
 .save-btn {
-    background-color: #004AAD;
+    background-color: #155ACA;
     color: white;
-    border: 1px solid #004AAD;
+    border: 1px solid #155ACA;
 }
 
 .cancel-btn {
-    background-color: #004AAD;
+    background-color: #155ACA;
     color: white;
-    border: 1px solid #004AAD;
+    border: 1px solid #155ACA;
 }
 
 /* Efek hover */
@@ -213,7 +213,7 @@ nav:hover {
             display: inline-block;
             margin-top: 10px;
             padding: 10px 20px;
-            background-color: #004AAD;
+            background-color: #155ACA;
             color: white;
             border-radius: 4px;
             cursor: pointer;
@@ -290,7 +290,7 @@ nav:hover {
     <nav>
         <ul>
             <li>
-                <a href="home.html" class="logo">
+                <a href="#" class="logo">
                     <img src="/Asset/Logo Home.png" alt="">
                     <span class="nav-item">DENTAL EDUCATION</span>
                 </a>
@@ -467,7 +467,7 @@ nav:hover {
             formData.append("file", file);
 
             try{
-                await axios.put("http://localhost:3001/api/v1/users/photo", formData, {
+                await axios.put("https://dfr66lds-3001.asse.devtunnels.ms/api/v1/users/photo", formData, {
              headers: {
                 "Content-Type": "multipart/form-data",
                 "x-access-token": "Bearer "+ value

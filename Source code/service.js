@@ -1,5 +1,5 @@
-const BASE_URL = "http://localhost:3001";
-
+// const BASE_URL = "http://localhost:3001";
+const BASE_URL = "https://dfr66lds-3001.asse.devtunnels.ms"; //base url BE port
 export async function loginUser(email, password) {
   try {
     const response = await fetch(`${BASE_URL}/api/v1/users/login`, {
@@ -264,6 +264,27 @@ export async function forgotPassword(email) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ email }),
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.message);
+    }
+
+    return [null, null];
+  } catch (err) {
+    return [null, err];
+  }
+}
+
+export async function verifyPassword(password, email) {
+  try {
+    const response = await fetch(`${BASE_URL}/api/v1/users/verify-password`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ password, email }),
     });
 
     if (!response.ok) {

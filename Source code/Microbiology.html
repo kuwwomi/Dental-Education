@@ -63,7 +63,7 @@
 
       a {
         position: relative;
-        color: #004aad;
+        color: #155ACA;
         font-size: 14px;
         display: table;
         width: 300px;
@@ -122,7 +122,7 @@
       h1 {
         text-align: center;
         font-size: 48px;
-        color: #004aad;
+        color: #155ACA;
         margin-bottom: 40px;
       }
 
@@ -208,19 +208,19 @@
       }
 
       .cancel-btn {
-        background-color: #004aad;
+        background-color: #155ACA;
       }
 
       .predict-btn {
-        background-color: #004aad;
+        background-color: #155ACA;
       }
 
       button:hover {
         opacity: 0.9;
       }
 
-                      /* Responsiveness for smaller screens */
-                      @media (max-width: 768px) {
+           /* Responsiveness for smaller screens */
+           @media (max-width: 768px) {
         nav {
             width: 70px; /* Smaller width for navigation */
         }
@@ -277,13 +277,14 @@
             font-size: 12px; /* Smaller font size for inputs */
         }
     }
+
     </style>
   </head>
   <body>
     <nav>
       <ul>
         <li>
-          <a href="home.html" class="logo">
+          <a href="#" class="logo">
             <img src="/Asset/Logo Home.png" alt="" />
             <span class="nav-item">DENTAL EDUCATION</span>
           </a>
@@ -342,11 +343,6 @@
         </div>
 
         <div class="input-group">
-          <!-- <label for="age">Age</label> -->
-          <input type="string" id="state" placeholder="OralValue " required />
-        </div>
-
-        <div class="input-group">
           <!-- <label for="semester">Total Semester of Pre-University</label> -->
           <input
             type="number"
@@ -396,18 +392,18 @@
 
       const token = localStorage.getItem("auth-token");
 
-        if (!token) {
-            Swal.fire({
-                icon: "warning",
-                title: "Access Denied",
-                text: "You need to login to access this page.",
-            }).then(() => {
-                window.location.href = "Logsig.html";
-            });
-        }
+      if (!token) {
+        Swal.fire({
+          icon: "warning",
+          title: "Access Denied",
+          text: "You need to login to access this page.",
+        }).then(() => {
+          window.location.href = "Logsig.html";
+        });
+      }
 
       document.getElementById("cancel_form").addEventListener("click", (e) => {
-        window.location.href = "Feature.html";
+        window.location.href = "FeatureAdmin.html";
       });
 
       document
@@ -418,7 +414,6 @@
           // Ambil nilai input
           const name = document.getElementById("userName").value;
           const age = parseInt(document.getElementById("userAge").value, 10);
-          const state = parseInt(document.getElementById("state").value, 10);
           const semester = parseInt(
             document.getElementById("userSemester").value,
             10
@@ -429,15 +424,15 @@
           const final_cgpa = parseFloat(
             document.getElementById("finalCGPA").value
           );
-          
+
+          // Validasi input
           if (
             !name ||
             !age ||
-            !state ||
             !semester ||
             !average_cgpa ||
             !final_cgpa
-          ){
+          ) {
             Swal.fire({
               icon: "warning",
               title: "Invalid Input",
@@ -450,10 +445,9 @@
           try {
             // Panggil fungsi prediksi
             const [prediction, err] = await predictOutcome({
-              type: "microbiology",
+              type : "microbiology",
               name,
               age,
-              state,
               semester,
               average_cgpa,
               final_cgpa,
@@ -471,8 +465,10 @@
 
             Swal.fire({
               icon: "success",
-              title: "Prediction Success",
-              text: prediction.data.result,
+              title: prediction.data.result,
+              text: "Prediction Succses"
+            }).then(() => {
+              window.location.href = "hasilGradePrediction.html"; // Ganti dengan halaman tujuan
             });
           } catch (error) {
             Swal.fire({
@@ -484,36 +480,35 @@
         });
 
         document.querySelector(".logout").addEventListener("click", (e) => {
-            e.preventDefault(); // Prevent default action
+        e.preventDefault(); // Mencegah tindakan default
 
-            // Show confirmation dialog before logout
+        // Tampilkan konfirmasi menggunakan Swal.fire
+        Swal.fire({
+          title: "Are you sure?",
+          text: "You will be logged out and redirected to the login page.",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, logout",
+          cancelButtonText: "No, cancel",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // Hapus token dari localStorage
+            localStorage.removeItem("auth-token-admin");
+
+            // Tampilkan pesan sukses
             Swal.fire({
-                title: "Are you sure?",
-                text: "You will be logged out and redirected to the login page.",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, logout",
-                cancelButtonText: "No, cancel",
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // Remove the auth-token from localStorage
-                    localStorage.removeItem("auth-token");
-
-                    // Show logout success message
-                    Swal.fire({
-                        icon: "success",
-                        title: "Logged Out",
-                        text: "You have been successfully logged out.",
-                    }).then(() => {
-                        // Redirect to the login page
-                        window.location.href = "LandingPage.html";
-                    });
-                }
+              icon: "success",
+              title: "Logged Out",
+              text: "You have been successfully logged out.",
+            }).then(() => {
+              // Redirect ke halaman login
+              window.location.href = "LandingPageAdmin.html";
             });
+          }
         });
-
+      });
     </script>
   </body>
 </html>

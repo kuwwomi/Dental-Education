@@ -93,7 +93,7 @@
       }
 
       .form-container h1 {
-        color: #3164f4;
+        color: #155ACA;
         margin-bottom: 40px;
         text-align: center;
       }
@@ -103,7 +103,7 @@
         margin-bottom: 5px;
         font-weight: 500;
         font-size: 14px;
-        color: #3164f4;
+        color: #155ACA;
       }
 
       .form-row {
@@ -119,7 +119,7 @@
       .form-container input,
       .form-container textarea {
         background-color: #ffff;
-        border: 1px solid #3164f4;
+        border: 1px solid #155ACA;
         margin: 8px 0;
         padding: 15px 15px;
         font-size: 13px;
@@ -130,7 +130,7 @@
       }
 
       input::placeholder {
-        color: #3164f4;
+        color: #155ACA;
       }
 
       .form-container .button-container {
@@ -139,7 +139,7 @@
       }
       .form-container button {
         width: 520px;
-        background-color: #3164f4;
+        background-color: #155ACA;
         color: #fff;
         font-size: 12px;
         padding: 10px 45px;
@@ -238,13 +238,13 @@
           <div class="form-row"></div>
 
           <!-- Menampilkan email dari query parameter -->
-          <p id="emailDisplay" style="color: #3164f4; text-align: center"></p>
+          <p id="emailDisplay" style="color: #155ACA; text-align: center"></p>
           <input type="hidden" id="emailField" />
 
           <label for="password1"><strong>Password</strong></label>
           <input
             type="password"
-            id="passwordAdmin"
+            id="password"
             placeholder="Enter your new password"
             required
           />
@@ -264,48 +264,46 @@
     <script type="module">
       // import { registerAdmin } from "./service.js";
 
-      // Ambil email dari query parameter di URL
-      const params = new URLSearchParams(window.location.search);
+      import { verifyPassword } from "./service.js";
 
-      const resetPass = document.querySelector("#resetPass");
-      const passAdmin = document.querySelector("#passwordAdmin");
-      const confPass = document.querySelector("#confirmPass");
+      const registerButton = document.querySelector("#resetPass");
+      const password = document.querySelector("#password");
+      const confirmPass = document.querySelector("#confirmPass");
 
-      resetPass.addEventListener("click", async (e) => {
-        if (!passAdmin.value || !confPass.value) {
-          Swal.fire({
-            icon: "warning",
-            title: "Incomplete Form",
-            text: "Please fill out all fields before submitting.",
-            confirmButtonText: "Ok",
-          });
-          return;
-        }
-
-        if (passAdmin.value !== confPass.value) {
+      registerButton.addEventListener("click", async (e) => {
+        console.log(password.value, confirmPass.value);
+        if (password.value != confirmPass.value) {
           Swal.fire({
             icon: "error",
-            title: "Password Mismatch",
-            text: "Passwords do not match. Please try again.",
+            title: "Verify Failed",
+            text: "Password doesn't match",
+            confirmButtonText: "Ok",
+          });
+          return;
+        }
+        const params = new URLSearchParams(window.location.search);
+        const email = params.get("email");
+        const [result, error] = await verifyPassword(password.value, email);
+
+        if (error) {
+          Swal.fire({
+            icon: "error",
+            title: "Verify Failed",
+            text: "There is an error on server",
             confirmButtonText: "Ok",
           });
           return;
         }
 
-        // Menampilkan data yang dikirim ke console
-        const payload = {
-          email: document.getElementById("emailField").value,
-          password: passAdmin.value,
-        };
-
-        console.log("Data dikirim:", payload);
-
-        // Simulasi sukses
         Swal.fire({
           icon: "success",
-          title: "Password Reset",
-          text: "Your password has been reset successfully.",
+          title: "Success Reset Password",
+          text: "Success Reset Password",
           confirmButtonText: "Ok",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = "Logsig.html"; // Redirect ke halaman utama
+          }
         });
       });
     </script>

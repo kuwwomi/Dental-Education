@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Anatomy Mark</title>
-    <!-- <link rel="stylesheet" href="anatomy.css"> -->
+    <title>Repeat Paper Prediction</title>
+    <!-- <link rel="stylesheet" href="repeat.css"> -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -107,7 +107,7 @@
 
       .container {
         max-width: 1200px;
-        margin-top: 50px;
+        margin-top: 70px;
         margin-left: 30px;
         margin-right: 70px;
         padding: 100px;
@@ -208,6 +208,10 @@
       }
 
       .cancel-btn {
+        background-color: #155ACA;
+      }
+
+      .upload-btn {
         background-color: #155ACA;
       }
 
@@ -365,55 +369,47 @@
   </head>
   <body>
     <nav>
-      <ul>
-        <li>
-          <a href="#" class="logo">
-            <img src="/Asset/Logo Home.png" alt="" />
-            <span class="nav-item">DENTAL EDUCATION</span>
-          </a>
-        </li>
-        <li>
-          <a href="profile.html">
-            <i class="fas fa-user"></i>
-            <span class="nav-item2">Profile</span>
-          </a>
-        </li>
-        <li>
-          <a href="information1.html">
-            <i class="fas fa-graduation-cap"></i>
-            <span class="nav-item2">Grade Prediction</span>
-          </a>
-        </li>
-        <!-- <li><a href="information2.html">
-                <i class="fas fa-upload"></i>
-                <span class="nav-item2">Upload</span>
-            </a></li>
-            <li><a href="result.html">
-                <i class="fas fa-chart-line"></i>
-                <span class="nav-item2">Result Analytics</span>
-            </a></li> -->
-        <li>
-          <a href="hasilGradePrediction.html">
-            <i class="fas fa-chart-column"></i>
-            <span class="nav-item2">Result Grade Prediction</span>
-          </a>
-        </li>
-        <li>
-          <a href="hasilRepeat.html">
-            <i class="fas fa-chart-gantt"></i>
-            <span class="nav-item2">Result Repeat Paper</span>
-          </a>
-        </li>
-        <li>
-          <a href="LandingPage.html" class="logout">
-            <i class="fas fa-sign-out-alt"></i>
-            <span class="nav-item2">Logout</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
+        <ul>
+          <li>
+            <a href="#" class="logo">
+              <img src="/Asset/Logo Home.png" alt="" />
+              <span class="nav-item">DENTAL EDUCATION</span>
+            </a>
+          </li>
+          <li>
+            <a href="profile.html">
+              <i class="fas fa-user"></i>
+              <span class="nav-item2">Profile</span>
+            </a>
+          </li>
+          <li>
+            <a href="information1.html">
+              <i class="fas fa-graduation-cap"></i>
+              <span class="nav-item2">Grade Prediction</span>
+            </a>
+          </li>
+          <li>
+            <a href="hasilGradePrediction.html">
+              <i class="fas fa-chart-column"></i>
+              <span class="nav-item2">Result Grade Prediction</span>
+            </a>
+          </li>
+          <li>
+            <a href="hasilRepeat.html">
+              <i class="fas fa-chart-gantt"></i>
+              <span class="nav-item2">Result Repeat Paper</span>
+            </a>
+          </li>
+          <li>
+            <a href="LandingPage.html" class="logout">
+              <i class="fas fa-sign-out-alt"></i>
+              <span class="nav-item2">Logout</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
     <div class="container">
-      <h1>Anatomy Mark</h1>
+      <h1>Repeat Paper Prediction</h1>
       <form id="predictionForm">
         <div class="input-group">
           <!-- <label for="name">Name</label> -->
@@ -481,10 +477,11 @@
             type="button"
             id="cancel_form"
             class="cancel-btn"
-            onclick="cancelForm()">Cancel
+            onclick="cancelForm()"
+          >
+            Cancel
           </button>
-          <button type="submit" id="prediction_form" class="predict-btn">
-            Predict
+          <button type="submit" id="prediction_form" class="predict-btn">Predict
           </button>
         </div>
       </form>
@@ -493,120 +490,112 @@
     <script type="module">
       import { predictOutcome } from "./service.js"; // Pastikan path file benar
 
-      const token = localStorage.getItem("auth-token");
+        const token = localStorage.getItem("auth-token");
 
-      if (!token) {
+        if (!token) {
         Swal.fire({
-          icon: "warning",
-          title: "Access Denied",
-          text: "You need to login to access this page.",
+            icon: "warning",
+            title: "Access Denied",
+            text: "You need to login to access this page.",
         }).then(() => {
-          window.location.href = "Logsig.html";
+            window.location.href = "Logsig.html";
         });
-      }
+        }
 
-      document.getElementById("cancel_form").addEventListener("click", (e) => {
+        document.getElementById("cancel_form").addEventListener("click", (e) => {
         window.location.href = "Feature.html";
-      });
+              });
 
         document.getElementById("state").addEventListener("change", function () {
-          const selectedOption = this.options[this.selectedIndex].text;
-          const stateSelect = this;  // Reference to the select element
+            const selectedOption = this.options[this.selectedIndex].text;
+            const stateSelect = this;  // Reference to the select element
 
-          // If no option is selected, do nothing and keep the select dropdown visible
-          if (this.selectedIndex === 0) {
-              return;
-          }
+            // If no option is selected, do nothing and keep the select dropdown visible
+            if (this.selectedIndex === 0) {
+                return;
+            }
 
-          const st = document.getElementById("state")
-          console.log(st.value)
+            const st = document.getElementById("state")
+            console.log(st.value)
 
-          // Hide the select dropdown after selection
-          stateSelect.style.display = "none";
+            // Hide the select dropdown after selection
+            stateSelect.style.display = "none";
 
-          // Create a new element to display the selected option
-          const stateText = document.createElement("div");
-          stateText.textContent = selectedOption;
+            // Create a new element to display the selected option
+            const stateText = document.createElement("div");
+            stateText.textContent = selectedOption;
 
-          // Apply CSS styles
-          stateText.style.padding = "12px 10px";
-          stateText.style.border = "2px solid #28a745";
-          stateText.style.borderRadius = "5px";
-          stateText.style.fontSize = "15px";
-          stateText.style.backgroundColor = "white";
-          stateText.style.color = "black";
-          stateText.style.marginTop = "10px";
-          stateText.style.width = "100%";
-          stateText.style.textIndent = "10px";
-          stateText.style.cursor = "pointer";  // Indicate that this is clickable
+            // Apply CSS styles
+            stateText.style.padding = "12px 10px";
+            stateText.style.border = "2px solid #28a745";
+            stateText.style.borderRadius = "5px";
+            stateText.style.fontSize = "15px";
+            stateText.style.backgroundColor = "white";
+            stateText.style.color = "black";
+            stateText.style.marginTop = "10px";
+            stateText.style.width = "100%";
+            stateText.style.textIndent = "10px";
+            stateText.style.cursor = "pointer";  // Indicate that this is clickable
 
-          // Add a click event to re-show the select dropdown when the user clicks the displayed choice
-          stateText.addEventListener("click", function () {
-              stateSelect.style.display = "inline-block";  // Show the dropdown again
-              stateText.remove();  // Remove the displayed selected option text
-          });
+            // Add a click event to re-show the select dropdown when the user clicks the displayed choice
+            stateText.addEventListener("click", function () {
+                stateSelect.style.display = "inline-block";  // Show the dropdown again
+                stateText.remove();  // Remove the displayed selected option text
+            });
 
-          // Insert the new element after the dropdown
-          this.parentNode.appendChild(stateText);
+            // Insert the new element after the dropdown
+            this.parentNode.appendChild(stateText);
         });
 
-      document
+        document
         .getElementById("prediction_form")
         .addEventListener("click", async (event) => {
-          event.preventDefault(); // Mencegah refresh halaman
+            event.preventDefault(); // Mencegah refresh halaman
 
-          // Ambil nilai input
-          const name = document.getElementById("userName").value;
-          const age = parseInt(document.getElementById("userAge").value, 10);
-          const state = document.getElementById("state").value;
-          const semester = parseInt(
-            document.getElementById("userSemester").value,
-            10
-          );
-          const average_cgpa = parseFloat(
-            document.getElementById("averageCGPA").value
-          );
-          const final_cgpa = parseFloat(
-            document.getElementById("finalCGPA").value
-          );
+            // Ambil nilai input
+            const name = document.getElementById("userName").value;
+            const age = parseInt(document.getElementById("userAge").value, 10);
+            const state = document.getElementById("state").value;
+            const semester = parseInt(document.getElementById("userSemester").value,10);
+            const average_cgpa = parseFloat(document.getElementById("averageCGPA").value);
+            const final_cgpa = parseFloat(document.getElementById("finalCGPA").value);
 
-          if (
+            if (
             !name ||
             !age ||
             !state ||
             !semester ||
             !average_cgpa ||
             !final_cgpa
-          ){
+            ){
             Swal.fire({
-              icon: "warning",
-              title: "Invalid Input",
-              text: "Please fill out all fields before proceeding.",
+                icon: "warning",
+                title: "Invalid Input",
+                text: "Please fill out all fields before proceeding.",
             });
-              return;
+                return;
             }
 
-          const resultElement = document.getElementById("result");
-          try {
-            // Panggil fungsi prediksi
+            const resultElement = document.getElementById("result");
+            try {
             const [prediction, err] = await predictOutcome({
-              type : "anatomy",
-              name,
-              age,
-              state,
-              semester,
-              average_cgpa,
-              final_cgpa,
-              token,
+                type: "year2",
+                name,
+                age,
+                state,
+                semester,
+                average_cgpa,
+                final_cgpa,
+                token,
             });
 
             if (err) {
-              Swal.fire({
+                Swal.fire({
                 icon: "error",
                 title: "Failed to Prediction",
                 text: "Error during while prediction",
-              });
-              return;
+                });
+                return;
             }
 
             Swal.fire({
@@ -614,15 +603,16 @@
               title: prediction.data.result,
               text: "Prediction Succses"
             }).then(() => {
-              window.location.href = "hasilGradePrediction.html"; // Ganti dengan halaman tujuan
+              window.location.href = "hasilRepeat.html"; // Ganti dengan halaman tujuan
             });
-          } catch (error) {
+            } catch (error) {
+            console.log(error);
             Swal.fire({
-              icon: "error",
-              title: "Failed to Prediction",
-              text: "Error during while prediction",
+                icon: "error",
+                title: "Failed to Prediction",
+                text: "Error during while prediction",
             });
-          }
+            }
         });
 
         document.querySelector(".logout").addEventListener("click", (e) => {
@@ -630,32 +620,31 @@
 
         // Tampilkan konfirmasi menggunakan Swal.fire
         Swal.fire({
-          title: "Are you sure?",
-          text: "You will be logged out and redirected to the login page.",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "Yes, logout",
-          cancelButtonText: "No, cancel",
+            title: "Are you sure?",
+            text: "You will be logged out and redirected to the login page.",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, logout",
+            cancelButtonText: "No, cancel",
         }).then((result) => {
-          if (result.isConfirmed) {
+            if (result.isConfirmed) {
             // Hapus token dari localStorage
-            localStorage.removeItem("auth-token-admin");
+            localStorage.removeItem("auth-token");
 
             // Tampilkan pesan sukses
             Swal.fire({
-              icon: "success",
-              title: "Logged Out",
-              text: "You have been successfully logged out.",
+                icon: "success",
+                title: "Logged Out",
+                text: "You have been successfully logged out.",
             }).then(() => {
-              // Redirect ke halaman login
-              window.location.href = "LandingPage.html";
+                // Redirect ke halaman login
+                window.location.href = "LandingPage.html";
             });
-          }
+            }
         });
-      });
-
+        });
     </script>
   </body>
 </html>
