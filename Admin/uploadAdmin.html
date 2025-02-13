@@ -63,7 +63,7 @@
 
       a {
         position: relative;
-        color: #004aad;
+        color: #155ACA;
         font-size: 14px;
         display: table;
         width: 300px;
@@ -127,7 +127,7 @@
       }
 
       h1 {
-        color: #004aad;
+        color: #155ACA;
         font-size: 2rem;
       }
 
@@ -136,7 +136,7 @@
       }
 
       .upload-box {
-        border: 2px dashed #004aad;
+        border: 2px dashed #155ACA;
         border-radius: 8px;
         padding: 50px;
         margin: 30px auto; /* Centered with auto */
@@ -157,7 +157,7 @@
       }
 
       .upload-text {
-        color: #004aad;
+        color: #155ACA;
         font-weight: bold;
         cursor: pointer;
       }
@@ -201,19 +201,19 @@
       }
 
       button:nth-child(2) {
-        background-color: #004aad;
+        background-color: #155ACA;
         color: #fff;
         border: none;
       }
 
       button:nth-child(3) {
-        background-color: #004aad;
+        background-color: #155ACA;
         color: #fff;
         border: none;
       }
 
       button:nth-child(3):hover {
-        background-color: #004aad;
+        background-color: #155ACA;
       }
 
       /* Responsiveness for smaller screens */
@@ -280,7 +280,7 @@
     <nav>
       <ul>
         <li>
-          <a href="homeAdmin.html" class="logo">
+          <a href="#" class="logo">
             <img src="/Asset/Logo Home.png" alt="" />
             <span class="nav-item">Hello Admin!</span>
           </a>
@@ -298,12 +298,6 @@
           </a>
         </li>
         <li>
-          <a href="resultAdmin.html">
-            <i class="fas fa-chart-line"></i>
-            <span class="nav-item2">Result Analytics</span>
-          </a>
-        </li>
-        <li>
           <a href="hasilGradePredictionAdmin.html">
             <i class="fas fa-chart-column"></i>
             <span class="nav-item2">Result Grade Prediction</span>
@@ -313,6 +307,12 @@
           <a href="hasilRepeatAdmin.html">
             <i class="fas fa-chart-gantt"></i>
             <span class="nav-item2">Result Repeat Paper</span>
+          </a>
+        </li>
+        <li>
+          <a href="resultAdmin.html">
+            <i class="fas fa-chart-line"></i>
+            <span class="nav-item2">Result Analytics</span>
           </a>
         </li>
         <li>
@@ -349,7 +349,8 @@
       </div>
       <div class="upload-controls">
         <select id="fileType">
-          <option value="repeat-paper">Repeat Paper Prediction</option>
+          <option value="year1">Repeat Paper Year One</option>
+          <option value="year2">Repeat Paper Year Two</option>
           <option value="anatomy">Anatomy Mark Prediction</option>
           <option value="biochemistry">Biochemistry Mark Prediction</option>
           <option value="physiology">Physiology Mark Prediction</option>
@@ -364,7 +365,7 @@
       </div>
     </div>
 
-    <script type="module">
+    <!-- <script type="module">
       import { bulkUploadPrediction,  } from "./service.js";
 
       const token = localStorage.getItem("auth-token-admin");
@@ -499,6 +500,81 @@
         });
       });
 
+    </script> -->
+
+
+    <script type="module">
+      import { bulkUploadPrediction } from "./service.js";
+      let formData = new FormData();
+    
+      const token = localStorage.getItem("auth-token-admin");
+
+      document.getElementById("fileInput").addEventListener("change", async (e) => {
+        try {
+          const file = e.target.files[0];
+          if (!file) return;
+    
+          if (file.size > 5 * 1024 * 1024) { // 5MB limit
+            Swal.fire({
+              title: "Update Failed",
+              text: "Photo Size is too large",
+              icon: "error",
+              confirmButtonText: "Ok",
+            });
+            e.target.value = "";
+            return;
+          }
+    
+          formData.append("file", file);
+          document.querySelector(".upload-text").textContent = file.name;
+          document.querySelector(".drag-text").style.display = "none";
+    
+          Swal.fire({
+            icon: "success",
+            title: "Success Upload Excel",
+            text: "Your Excel Data has been uploaded successfully!",
+          });
+        } catch (err) {
+          Swal.fire({
+            title: "Upload Failed",
+            text: "Cannot Upload an Excel",
+            icon: "error",
+            confirmButtonText: "Ok",
+          });
+          e.preventDefault();
+        }
+      });
+    
+      function cancelUpload() {
+        const fileInput = document.getElementById("fileInput");
+        fileInput.value = "";
+        document.querySelector(".upload-text").textContent = "Select an Excel File to Upload";
+        document.querySelector(".drag-text").style.display = "block";
+        alert("File upload cancelled");
+      }
+    
+      document.getElementById("uploadFile").addEventListener("click", async (e) => {
+        e.preventDefault();
+        const result = document.getElementById("fileType");
+        try {
+          formData.append("type", result.value);
+          await bulkUploadPrediction(formData, token);
+          Swal.fire({
+            icon: "success",
+            title: "Success Predict with File",
+            text: "Your data has been successfully predicted with our system",
+          });
+          formData.delete("file");
+        } catch (err) {
+          Swal.fire({
+            title: "Predict Failed",
+            text: "Please Provide the File",
+            icon: "error",
+            confirmButtonText: "Ok",
+          });
+          formData = new FormData();
+        }
+      });
     </script>
   </body>
 </html>

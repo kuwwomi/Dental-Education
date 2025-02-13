@@ -64,7 +64,7 @@
 
       a {
         position: relative;
-        color: #004aad;
+        color: #155ACA;
         font-size: 14px;
         display: table;
         width: 300px;
@@ -121,7 +121,7 @@
       }
 
       h1 {
-        color: #004aad;
+        color: #155ACA;
         text-align: center;
         font-weight: bold;
         font-size: 48px;
@@ -204,7 +204,7 @@
     <nav>
       <ul>
         <li>
-          <a href="homeAdmin.html" class="logo">
+          <a href="#" class="logo">
             <img src="/Asset/Logo Home.png" alt="" />
             <span class="nav-item">Hello Admin!</span>
           </a>
@@ -300,19 +300,19 @@
 
       // Initialize datasets
       const datasets = {
-        Y: new Array(labels.length).fill(0), // For "Yes"
-        N: new Array(labels.length).fill(0), // For "No"
+        "Yes Repeat Paper": new Array(labels.length).fill(0),
+        "No Repeat Paper": new Array(labels.length).fill(0),
       };
 
       // Populate datasets with backend data
       // Normalize and populate datasets with backend data
       data.forEach(({ result, semester, count }) => {
         const normalizedResult =
-          result === "YES" ? "Y" : result === "NO" ? "N" : result;
+          result === "Yes Repeat Paper" ? "Yes Repeat Paper" : result === "No Repeat Paper" ? "No Repeat Paper" : result;
         const index = labels.indexOf(String(semester));
         if (
           index !== -1 &&
-          (normalizedResult === "Y" || normalizedResult === "N")
+          (normalizedResult === "Yes Repeat Paper" || normalizedResult === "No Repeat Paper")
         ) {
           datasets[normalizedResult][index] += parseInt(count, 10);
         } else {
@@ -327,16 +327,16 @@
           labels, // Predefined semester labels
           datasets: [
             {
-              label: "Yes",
-              data: datasets.Y, // Populated "Yes" data
+              label: "Yes Repeat Paper",
+              data: datasets["Yes Repeat Paper"],
               borderColor: "rgb(255, 99, 132)",
               backgroundColor: "rgba(255, 99, 132, 0.2)",
               fill: false,
               tension: 0.1,
             },
             {
-              label: "No",
-              data: datasets.N, // Populated "No" data
+              label: "No Repeat Paper",
+              data: datasets["No Repeat Paper"],
               borderColor: "rgb(75, 192, 192)",
               backgroundColor: "rgba(75, 192, 192, 0.2)",
               fill: false,

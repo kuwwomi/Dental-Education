@@ -27,11 +27,16 @@
         background: #dfe9f5;
       }
 
+      html, body {
+  height: 100%;
+  margin: 0;
+}
+
       nav {
-        position: absolute;
+        position: fixed;
         top: 0;
         bottom: 0;
-        height: 100%;
+        height: 100vh;
         left: 0;
         background: white;
         width: 90px;
@@ -63,7 +68,7 @@
 
       a {
         position: relative;
-        color: #004aad;
+        color: #155ACA;
         font-size: 14px;
         display: table;
         width: 300px;
@@ -140,7 +145,7 @@
       }
 
       table thead {
-        background-color: #004aad;
+        background-color: #155ACA;
         color: #fff;
       }
 
@@ -206,7 +211,7 @@
 
       table tbody tr:nth-child(even),
       table tbody tr:nth-child(odd) {
-        background-color: #004aad; /* Lebih gelap untuk kontras dengan teks putih */
+        background-color: #155ACA; /* Lebih gelap untuk kontras dengan teks putih */
       }
 
       /* Responsiveness for smaller screens */
@@ -295,7 +300,7 @@
     <nav>
       <ul>
         <li>
-          <a href="homeAdmin.html" class="logo">
+          <a href="#" class="logo">
             <img src="/Asset/Logo Home.png" alt="" />
             <span class="nav-item">Hello Admin!</span>
           </a>
@@ -357,6 +362,7 @@
             <th>Average CGPA</th>
             <th>Final CGPA</th>
             <th>Result</th>
+            <th>Subject</th>
           </tr>
         </thead>
         <tbody id="tableBody">
@@ -415,6 +421,8 @@
                     <td class="white-text">${row.average_cgpa}</td>
                     <td class="white-text">${row.final_cgpa}</td>
                     <td class="white-text">${row.result}</td>
+                    <td class="white-text">${row.type}</td>
+
                 `;
           tableBody.appendChild(tr);
         });
@@ -539,19 +547,26 @@
         });
       });
 
-      document
-        .getElementById("clear-btn")
-        .addEventListener("click", async (e) => {
-          const payload = {
-            type: "repeat-paper",
-          };
+      document.getElementById("clear-btn").addEventListener("click", async (e) => {
+        Swal.fire({
+          icon: "warning",
+          title: "Are you sure?",
+          text: "This will delete all predictions data. This action cannot be undone!",
+          showCancelButton: true,
+          confirmButtonText: "Yes, delete it!",
+          cancelButtonText: "Cancel",
+        }).then(async (result) => {
+          if (result.isConfirmed) {
+            const payload = {
+              type: "repeat-paper",
+            };
 
           const [result, err] = await deletePrediction(token, payload);
           if (err) {
             Swal.fire({
               icon: "error",
               title: "Error while deleting data",
-              text: error || "Failed to delete data",
+              text: err || "Failed to delete data",
               confirmButtonText: "Ok",
             });
             return;
@@ -565,7 +580,21 @@
           }).then(() => {
             window.location.href = "hasilRepeatAdmin.html";
           });
-        });
+        }
+      });
+    });
+
+    function adjustNavHeight() {
+  const nav = document.querySelector("nav");
+  const container = document.querySelector(".container");
+  if (container) {
+    nav.style.height = `${container.scrollHeight}px`; // Sesuaikan tinggi navbar dengan container
+  }
+}
+
+// Panggil fungsi saat halaman dimuat dan saat ada perubahan ukuran
+window.onload = adjustNavHeight;
+window.onresize = adjustNavHeight;
     </script>
   </body>
 </html>

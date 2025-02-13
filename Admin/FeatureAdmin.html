@@ -60,7 +60,7 @@ nav {
 
 a {
     position: relative;
-    color: #004AAD;
+    color: #155ACA;
     font-size: 14px;
     display: table;
     width: 300px;
@@ -124,7 +124,7 @@ nav:hover {
 
 .content h1 {
     font-size: 48px;
-    color: #004AAD;
+    color: #155ACA;
     margin-bottom: 10px;
 }
 
@@ -159,63 +159,60 @@ nav:hover {
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-.blue {
-    background-color: #68b3e1;
+.rp1 {
+    background-color: #718FE3;
+    color: white;
+    border-color: #1F486A;
+}
+
+.rp2 {
+    background-color: #285ECA;
+    color: white;
+    border-color: #233354;
+}
+
+.anatomy {
+    background-color: #9aceee;
     color: white;
     border-color: #394892;
 }
 
-.babyblue {
-    background-color: #B8D9EE;
-    color: #004AAD;
-    border-color: #394892;
-}
-
-.greenmint {
-    background-color: #B7E7C7;
-    color: #004AAD;
-    border-color: #7AA3AB;
-}
-
-.denimmuda {
-    background-color: #C6CBEC;
-    color: #004AAD;
-    border-color: #5A66B2;
-}
-
-.denim {
-    background-color: #7988D2;
+.pathology {
+    background-color: #A3C4F3;
     color: white;
-    border-color: #2E4870;
-}
-.hijau {
-    background-color: #86D780;
-    color: #004AAD;
-    border-color: #27641F;
-}
-.birumuda {
-    background-color: #d6d8ff;
-    color: #004AAD;
-    border-color: #8A9CB7;
-}
-.denimabu {
-    background-color: #99C9E0;
-    color: #004AAD;
-    border-color: #61748F;
-}
-.hijauklepon {
-    background-color: #58DB9C;
-    color: white;
-    border-color: #147647;
+    border-color: #5B79A3;
 }
 
-.center-button {
-    grid-column: span 2; /* Membuat tombol ini mencakup dua kolom pada grid */
-    justify-self: center; /* Memusatkan tombol di grid */
-    padding: 10px 150px; /* Sesuaikan padding agar lebih kecil */
-    max-width: 500px; /* Batas maksimum lebar tombol */
-    width: auto; /* Biarkan lebarnya disesuaikan secara otomatis */
-    text-align: center; /* Memastikan teks berada di tengah */
+.physiology {
+    background-color: #6D69B5;
+    color: white;
+    border-color: #18145A;
+}
+
+.microbiology {
+    background-color: #7F78D2;
+    color: white;
+    border-color: #494296;
+}
+.biochemistry {
+    background-color: #5837D0;
+    color: white;
+    border-color: #201644;
+}
+.pharmacology {
+    background-color: #A19AD3;
+    color: white;
+    border-color: #3F3A5F;
+}
+.oral {
+    background-color: #A6B1E1;
+    color: white;
+    border-color: #616EA5;
+}
+.dental {
+    background-color: #73b2d1;
+    color: white;
+    border-color: #4C7183;
 }
 
       /* Responsiveness for smaller screens */
@@ -286,7 +283,7 @@ nav:hover {
     <nav>
         <ul>
           <li>
-            <a href="homeAdmin.html" class="logo">
+            <a href="#" class="logo">
               <img src="/Asset/Logo Home.png" alt="" />
               <span class="nav-item">Hello Admin!</span>
             </a>
@@ -342,15 +339,16 @@ nav:hover {
             <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> -->
 
             <div class="grade-buttons">
-                <button class="grade-btn blue center-button" onclick="window.location.href='repeatAdmin.html'">Repeat Paper Prediction</button>
-                <button class="grade-btn babyblue" onclick="window.location.href='anatomyAdmin.html'">Anatomy Mark Prediction</button>
-                <button class="grade-btn greenmint" onclick="window.location.href='BiochemistryAdmin.html'">Biochemistry Mark Prediction</button>
-                <button class="grade-btn denimmuda" onclick="window.location.href='physiologyAdmin.html'">Physiology Mark Prediction</button>
-                <button class="grade-btn denim" onclick="window.location.href='OralAdmin.html'">Oral Biology Mark Prediction</button>
-                <button class="grade-btn hijau" onclick="window.location.href='pathologyAdmin.html'">Pathology Mark Prediction</button>
-                <button class="grade-btn birumuda" onclick="window.location.href='MicrobiologyAdmin.html'">Microbiology Mark Prediction</button>
-                <button class="grade-btn denimabu" onclick="window.location.href='PharmacologyAdmin.html'">Pharmacology Mark Prediction</button>
-                <button class="grade-btn hijauklepon" onclick="window.location.href='DentalAdmin.html'">Dental Material Science Prediction</button>
+                <button class="grade-btn rp1" onclick="window.location.href='repeatAdmin.html'">Repeat Paper  Year One Prediction</button>
+                <button class="grade-btn rp2" onclick="window.location.href='repeatAdmin2.html'">Repeat Paper Year Two Prediction</button>
+                <button class="grade-btn anatomy" onclick="window.location.href='anatomyAdmin.html'">Anatomy Mark Prediction</button>
+                <button class="grade-btn pathology" onclick="window.location.href='pathologyAdmin.html'">Pathology Mark Prediction</button>
+                <button class="grade-btn physiology" onclick="window.location.href='physiologyAdmin.html'">Physiology Mark Prediction</button>
+                <button class="grade-btn microbiology" onclick="window.location.href='MicrobiologyAdmin.html'">Microbiology Mark Prediction</button>
+                <button class="grade-btn biochemistry" onclick="window.location.href='BiochemistryAdmin.html'">Biochemistry Mark Prediction</button>
+                <button class="grade-btn pharmacology" onclick="window.location.href='PharmacologyAdmin.html'">Pharmacology Mark Prediction</button>
+                <button class="grade-btn oral" onclick="window.location.href='OralAdmin.html'">Oral Biology Mark Prediction</button>
+                <button class="grade-btn dental" onclick="window.location.href='DentalAdmin.html'">Dental Material Science Prediction</button>
             </div>
             
         </div>

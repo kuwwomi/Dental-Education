@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Oral Biology Mark</title>
-    <!-- <link rel="stylesheet" href="Oral.css"> -->
+    <title>Repeat Paper Year Two Prediction</title>
+    <!-- <link rel="stylesheet" href="repeat.css"> -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -107,7 +107,7 @@
 
       .container {
         max-width: 1200px;
-        margin-top: 80px;
+        margin-top: 70px;
         margin-left: 30px;
         margin-right: 70px;
         padding: 100px;
@@ -211,6 +211,10 @@
         background-color: #155ACA;
       }
 
+      .upload-btn {
+        background-color: #155ACA;
+      }
+
       .predict-btn {
         background-color: #155ACA;
       }
@@ -219,28 +223,92 @@
         opacity: 0.9;
       }
 
-      .swal2-confirm {
-            background-color: #155ACA !important; /* Warna tombol */
-            color: white !important; /* Warna teks tombol */
-            font-size: 16px !important; /* Ukuran font tombol */
-            padding: 10px 20px !important; /* Ukuran padding tombol */
-            border-radius: 8px !important; /* Radius untuk melengkungkan tombol */
-            border: none !important; /* Menghapus border */
-            font-weight: bold !important; /* Membuat teks tebal */
-        }
+      #state {
+        width: 100%;
+        padding: 10px 15px;
+        border: 2px solid #28a745;
+        border-radius: 5px;
+        font-size: 16px;
+        background-color: white;
+        cursor: pointer;
+        appearance: none; /* Hapus tampilan default browser */
+        background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%23004AAD' d='M5 6L0 0h10z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        background-size: 10px;
+        color: #808080; /* Default placeholder color */
+        position: relative;
+        overflow-y: auto; /* Aktifkan scrolling jika banyak opsi */
+      }
 
-        .swal2-title {
-            font-size: 24px !important; /* Ukuran font judul */
-            color: #155ACA !important; /* Warna teks judul */
-        }
+      #state option {
+        max-height: 150px; /* Estimasi tinggi untuk 5 opsi */
+        color: #000; /* Warna teks untuk opsi yang dipilih */
+      }
 
-        .swal2-html-container {
-            font-size: 18px !important; /* Ukuran font isi pesan */
-            color: #333 !important; /* Warna teks isi pesan */
-        }
+      #state:invalid {
+        color: #808080; /* Warna teks placeholder */
+      }
 
-           /* Responsiveness for smaller screens */
-           @media (max-width: 768px) {
+      #state:focus {
+        max-height: 150px;
+        overflow-y: auto; 
+        border-color: #1a73e8;
+        box-shadow: 0 0 5px rgba(26, 115, 232, 0.5);
+        outline: none;
+        display: block;
+      }
+
+      .custom-select {
+        width: 100%;
+        padding: 10px;
+        border: 2px solid #28a745;
+        border-radius: 5px;
+        font-size: 16px;
+        background-color: white;
+        cursor: pointer;
+        appearance: none;
+      }
+
+      /* Membatasi tinggi dropdown agar hanya 5 opsi yang terlihat */
+      .custom-select:focus {
+        height: auto;
+      }
+
+      .custom-select option {
+        height: 30px; /* Sesuaikan tinggi setiap opsi */
+      }
+
+      /* Batasi jumlah opsi yang terlihat dengan scrollbar */
+      .custom-select option:nth-child(n+6) {
+        display: none;
+      }
+
+      /* Aktifkan scrollbar di dropdown */
+      .custom-select:focus option:nth-child(n+6) {
+        display: block;
+      }
+
+      .custom-select:focus {
+        max-height: 180px; /* Sesuaikan tinggi dropdown agar 5 opsi terlihat */
+        overflow-y: auto;
+      }
+
+      .custom-select::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      .custom-select::-webkit-scrollbar-thumb {
+        background: #28a745;
+        border-radius: 10px;
+      }
+
+      .custom-select::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+
+      /* Responsiveness for smaller screens */
+      @media (max-width: 768px) {
         nav {
             width: 70px; /* Smaller width for navigation */
         }
@@ -355,7 +423,7 @@
     </nav>
 
     <div class="container">
-      <h1>Oral Biology Mark</h1>
+      <h1>Repeat Paper Year Two Prediction</h1>
       <form id="predictionForm">
         <div class="input-group">
           <!-- <label for="name">Name</label> -->
@@ -365,6 +433,29 @@
           <!-- <label for="age">Age</label> -->
           <input type="number" id="userAge" placeholder="Age" required />
         </div>
+
+        <div class="input-group">
+          <!-- <label for="state">State</label> -->
+          <select id="state" class="custom-select" style="width: 100%; padding: 10px; border: 2px solid #28a745; border-radius: 5px; font-size: 16px;" required>
+            <option value="" disabled selected> State</option>
+            <option value="Selangor">SELANGOR</option>
+            <option value="Kelantan">KELANTAN</option>
+            <option value="Pahang">PAHANG</option>
+            <option value="Negeri Sembilan">NEGERI SEMBILAN</option>
+            <option value="Kuala Lumpur">KUALA LUMPUR</option>
+            <option value="Kedah">KEDAH</option>
+            <option value="Johor">JOHOR</option>
+            <option value="W. Persekutuan">W. PERSEKUTUAN</option>
+            <option value="Perak">PERAK</option>
+            <option value="Melaka">MELAKA</option>
+            <option value="Terengganu">TERENGGANU</option>
+            <option value="Sabah">SABAH</option>
+            <option value="Perlis">PERLIS</option>
+            <option value="Pulau Pinang">PULAU PINANG</option>
+            <option value="Sarawak">SARAWAK</option>
+            <option value="Putrajaya">PUTRAJAYA</option>
+        </select>
+      </div>
 
         <div class="input-group">
           <!-- <label for="semester">Total Semester of Pre-University</label> -->
@@ -430,6 +521,47 @@
         window.location.href = "FeatureAdmin.html";
       });
 
+        document.getElementById("state").addEventListener("change", function () {
+          const selectedOption = this.options[this.selectedIndex].text;
+          const stateSelect = this;  // Reference to the select element
+
+          // If no option is selected, do nothing and keep the select dropdown visible
+          if (this.selectedIndex === 0) {
+              return;
+          }
+
+          const st = document.getElementById("state")
+          console.log(st.value)
+
+          // Hide the select dropdown after selection
+          stateSelect.style.display = "none";
+
+          // Create a new element to display the selected option
+          const stateText = document.createElement("div");
+          stateText.textContent = selectedOption;
+
+          // Apply CSS styles
+          stateText.style.padding = "12px 10px";
+          stateText.style.border = "2px solid #28a745";
+          stateText.style.borderRadius = "5px";
+          stateText.style.fontSize = "15px";
+          stateText.style.backgroundColor = "white";
+          stateText.style.color = "black";
+          stateText.style.marginTop = "10px";
+          stateText.style.width = "100%";
+          stateText.style.textIndent = "10px";
+          stateText.style.cursor = "pointer";  // Indicate that this is clickable
+
+          // Add a click event to re-show the select dropdown when the user clicks the displayed choice
+          stateText.addEventListener("click", function () {
+              stateSelect.style.display = "inline-block";  // Show the dropdown again
+              stateText.remove();  // Remove the displayed selected option text
+          });
+
+          // Insert the new element after the dropdown
+          this.parentNode.appendChild(stateText);
+      });
+
       document
         .getElementById("prediction_form")
         .addEventListener("click", async (event) => {
@@ -438,7 +570,7 @@
           // Ambil nilai input
           const name = document.getElementById("userName").value;
           const age = parseInt(document.getElementById("userAge").value, 10);
-          const state = "";
+          const state = document.getElementById("state").value;
           const semester = parseInt(
             document.getElementById("userSemester").value,
             10
@@ -453,6 +585,7 @@
           if (
             !name ||
             !age ||
+            !state ||
             !semester ||
             !average_cgpa ||
             !final_cgpa
@@ -467,11 +600,11 @@
 
           const resultElement = document.getElementById("result");
           try {
-            // Panggil fungsi prediksi
             const [prediction, err] = await predictOutcome({
-              type : "oral-biology",
+              type: "year2",
               name,
               age,
+              state,
               semester,
               average_cgpa,
               final_cgpa,
@@ -492,7 +625,7 @@
               title: prediction.data.result,
               text: "Prediction Succses"
             }).then(() => {
-              window.location.href = "hasilGradePredictionAdmin.html"; // Ganti dengan halaman tujuan
+              window.location.href = "hasilRepeatAdmin.html"; // Ganti dengan halaman tujuan
             });
           } catch (error) {
             console.log(error);

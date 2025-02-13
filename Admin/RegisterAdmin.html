@@ -10,7 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <title>Register for Admin</title>
+    <title>Invite for Admin</title>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
 
@@ -44,7 +44,7 @@
 
       .toggle-container {
         width: 50%;
-        background-color: #004aad;
+        background-color: #155aca;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -53,9 +53,36 @@
       }
 
       .logo-image {
-        width: 250px;
+        width: 400px;
+        margin-left: 70px;
+        margin-right: 40px;
         height: auto;
         z-index: 1;
+      }
+
+      .left p {
+        color: white;
+        line-height: 1.8;
+        font-size: 20px;
+        padding: 4px;
+        width: 80%;
+        text-align: center;
+        margin-left: 20px;
+      }
+
+      .toggle-panel {
+        position: absolute;
+        width: 50%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 0 30px;
+        text-align: center;
+        top: 0;
+        transform: translateX(0);
+        transition: all 0.6s ease-in-out;
       }
 
       .form-container {
@@ -67,8 +94,8 @@
       }
 
       .form-container h1 {
-        color: #004aad;
-        margin-bottom: 20px;
+        color: #155ACA;
+        margin-bottom: 40px;
         text-align: center;
       }
 
@@ -77,7 +104,7 @@
         margin-bottom: 5px;
         font-weight: 500;
         font-size: 14px;
-        color: #004aad;
+        color: #155ACA;
       }
 
       .form-row {
@@ -92,21 +119,61 @@
 
       .form-container input,
       .form-container textarea {
-        background-color: #eee;
-        border: none;
+        background-color: #ffff;
+        border: 1px solid #155ACA;
         margin: 8px 0;
-        padding: 10px 15px;
+        padding: 15px 15px;
         font-size: 13px;
-        border-radius: 8px;
+        border-radius: 5px;
         width: 100%;
         outline: none;
+        margin-bottom: 20px;
       }
+
+      input::placeholder {
+        color: #155ACA;
+      }
+
+      .left p {
+        color: white;
+        line-height: 1.8;
+        font-size: 20px;
+        padding: 4px;
+        width: 80%;
+        text-align: center;
+        margin-left: 20px;
+      }
+
+      .back-button {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        font-size: 24px !important; /* Ubah ukuran font */
+        color: #fff;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .back-button:hover {
+        color: #fff;
+      }
+
+      .back-button i {
+        font-size: inherit !important; /* Ikuti ukuran yang ditetapkan pada parent */
+      }
+
+    
+        #idSecret::placeholder {
+            color: #155ACA;
+        }
+
       .form-container .button-container {
         text-align: center; /* Menengahkan tombol */
         margin-top: 0px;
       }
       .form-container button {
-        background-color: #004aad;
+        width: 520px;
+        background-color: #155ACA;
         color: #fff;
         font-size: 12px;
         padding: 10px 45px;
@@ -115,69 +182,71 @@
         font-weight: 600;
         letter-spacing: 0.5px;
         text-transform: uppercase;
-        margin-top: 10px;
+        margin-top: 20px;
         cursor: pointer;
         display: inline-block;
       }
 
-                      /* Responsiveness for smaller screens */
-                      @media (max-width: 768px) {
+      /* Responsiveness for smaller screens */
+      @media (max-width: 768px) {
         nav {
-            width: 70px; /* Smaller width for navigation */
+          width: 70px; /* Smaller width for navigation */
         }
 
         nav:hover {
-            width: 180px; /* Adjust width when hovered */
+          width: 180px; /* Adjust width when hovered */
         }
 
         .container {
-            margin-left: 20px;
-            margin-right: 20px;
-            padding: 20px; /* Adjust padding for smaller screens */
-            transform: translate(0); /* Center the container */
+          margin-left: 20px;
+          margin-right: 20px;
+          padding: 20px; /* Adjust padding for smaller screens */
+          transform: translate(0); /* Center the container */
         }
 
         h1 {
-            font-size: 32px; /* Smaller font size for headings */
+          font-size: 32px; /* Smaller font size for headings */
         }
 
-        .input-group input, .grid-item input {
-            font-size: 14px; /* Reduce font size for inputs */
-            padding: 8px 8px; /* Adjust padding */
+        .input-group input,
+        .grid-item input {
+          font-size: 14px; /* Reduce font size for inputs */
+          padding: 8px 8px; /* Adjust padding */
         }
 
         .button-group {
-            flex-direction: column; /* Stack buttons vertically */
-            align-items: stretch;
+          flex-direction: column; /* Stack buttons vertically */
+          align-items: stretch;
         }
 
         button {
-            width: 100%; /* Full width buttons */
-            margin: 10px 0; /* Add spacing between buttons */
+          width: 100%; /* Full width buttons */
+          margin: 10px 0; /* Add spacing between buttons */
         }
-    }
+      }
 
-    @media (max-width: 480px) {
+      @media (max-width: 480px) {
         nav {
-            width: 60px; /* Even smaller width for very small screens */
+          width: 60px; /* Even smaller width for very small screens */
         }
 
         nav:hover {
-            width: 150px; /* Adjust hover width */
+          width: 150px; /* Adjust hover width */
         }
 
         .container {
-            padding: 15px; /* Smaller padding for very small screens */
+          padding: 15px; /* Smaller padding for very small screens */
         }
 
         h1 {
-            font-size: 24px; /* Further reduce heading size */
+          font-size: 24px; /* Further reduce heading size */
         }
 
-        .input-group input, .grid-item input {
-            font-size: 12px; /* Smaller font size for inputs */
+        .input-group input,
+        .grid-item input {
+          font-size: 12px; /* Smaller font size for inputs */
         }
-    }
+      }
     </style>
   </head>
 
@@ -185,27 +254,34 @@
     <div class="container">
       <!-- Bagian Biru di Sebelah Kiri -->
       <div class="toggle-container">
-        <img src="/Asset/Logo Home.png" alt="Blue Icon" class="logo-image" />
+        <div class="left">
+          <a href="FeatureAdmin.html" class="back-button"
+            ><i class="fa-solid fa-circle-arrow-left"></i
+          ></a>
+          <img src="/Asset/logo dental.png" alt="Blue Icon" class="logo-image" />
+        <p>Invite a new admin by filling out the form. Ensure the information is accurate before submission. 
+          The invited admin will receive an email with further instructions.</p>
+        </div>
       </div>
 
       <!-- Register for Admin Form -->
       <div class="form-container">
         <form id="registerForm">
-          <h1>Register for Admin</h1>
+          <h1>Invite Admin</h1>
           <div class="form-row">
             <div>
               <label for="first name">First Name</label>
-              <input type="text" id="first-name" placeholder="" required />
+              <input type="text" id="first-name" placeholder="Enter first name" required />
             </div>
             <div>
               <label for="last name">Last Name</label>
-              <input type="text" id="lastNameInput" placeholder="" required />
+              <input type="text" id="lastNameInput" placeholder="Enter  last name" required />
             </div>
           </div>
           <label for="email1">Email</label>
-          <input type="email" id="emailAdmin" placeholder="" required />
+          <input type="email" id="emailAdmin" placeholder="Enter email" required />
           <label for="telephone">Mobile Phone</label>
-          <input type="tel" id="phoneAdmin" placeholder="" required />
+          <input type="tel" id="phoneAdmin" placeholder="Enter phone number" required />
           <div class="button-container">
             <button type="button" id="registerButton">
               Create Account for Admin

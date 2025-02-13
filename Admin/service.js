@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3001"; //base url BE local
+const BASE_URL = "https://dfr66lds-3001.asse.devtunnels.ms"; //base url BE local
 // const BASE_URL = ""; //base url BE port
 
 export async function loginUser(email, password) {
@@ -225,7 +225,7 @@ export async function resultAnalytics(token) {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "x-access-token": `Bearer ${token}`
+        "x-access-token": `Bearer ${token}`,
       },
     });
 
@@ -288,12 +288,34 @@ export async function deletePrediction(token, payload) {
 
 export async function forgotPassword(email) {
   try {
-    const response = await fetch(`${BASE_URL}/api/v1/users/forgot-password`, {
+    const response = await fetch(`${BASE_URL}/api/v1/admins/forgot-password`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ email }),
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.message);
+    }
+
+    return [null, null];
+  } catch (err) {
+    console.log(err);
+    return [null, err];
+  }
+}
+
+export async function verifyPassword(password, email) {
+  try {
+    const response = await fetch(`${BASE_URL}/api/v1/admins/verify-password`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ password, email }),
     });
 
     if (!response.ok) {

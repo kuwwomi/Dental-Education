@@ -1,445 +1,768 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dental Education</title>
-    <!-- <link rel="stylesheet" href="landing.css"> -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
-*{
-    margin: 0;
-    padding: 0;
-    outline: none;
-    border: none;
-    text-decoration: none;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
-}
-body{
-    background: #dfe9f5;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academic Performance Prediction</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      padding-top: 40px;
+    }
+
+    nav {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        height: 532.9%;
+        left: 0;
+        background: white;
+        width: 90px;
+        overflow: hidden;
+        transition: width 0.2s linear;
+        box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+        z-index: 2;
+      }
+
+      .logo {
+        text-align: center;
+        display: flex;
+        transition: all 0.5s ease;
+        margin: 10px 0 0 10px;
+      }
+
+      .logo img {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+      }
+
+      .logo span {
+        font-weight: bold;
+        padding: 0px;
+        font-size: 18px;
+        text-transform: uppercase;
+      }
+
+      a {
+        position: relative;
+        color: #155ACA;
+        font-size: 14px;
+        display: table;
+        width: 300px;
+        padding: 10px;
+      }
+
+      .fas {
+        position: relative;
+        width: 70px;
+        height: 40px;
+        top: 14px;
+        font-size: 20px;
+        text-align: center;
+      }
+
+      .nav-item {
+        position: relative;
+        top: 12px;
+        margin-left: 25px;
+      }
+
+      .nav-item2 {
+        position: relative;
+        top: 12px;
+        margin-left: 10px;
+      }
+
+      a:hover {
+        background: #eee;
+      }
+
+      nav:hover {
+        width: 280px;
+        transition: all 0.5s ease;
+      }
+
+      .logout {
+        position: absolute;
+        bottom: 0;
+      }
+
+    /* .navbar {
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      width: 100%; 
+      background-color: #155ACA; 
+      z-index: 1000; 
+      padding: 1.5rem 2rem;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+      margin-bottom: 100px;
+    }
+
+    .navbar a {
+      color: white;
+      margin: 0 1.5rem; 
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .navbar a:hover {
+      text-decoration: underline;
+    } */
+
+    .hero-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2rem;
+      background-color: #fff;
+      margin-top: 140px; /* Menambah jarak antara navbar dan hero-section */
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Bayangan pada hero section */
+    }
+
+    .hero-section.container {
+      background: linear-gradient(180deg, #fff, #155ACA 1000%);
+      max-width: 1300px; /* Mengatur lebar maksimum */
+      margin: 0 auto; /* Menjaga konten tetap di tengah */
+      border-radius: 15px;
+    }
+
+    .hero-section img {
+      max-width: 630px;
+    }
+
+    .hero-content {
+      max-width: 600px;
+    }
+
+    .hero-title {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #3164F4;
+    }
+
+    .hero-description {
+      font-size: 1.25rem;
+      color: #00AC59;
+      margin: 1rem 0;
+    }
+
+    .hero-button {
+      background-color: #3164F4;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+      margin-top: 20px; /* Tambahkan jarak antara tombol dan deskripsi */
+    }
+
+    .hero-button:hover {
+      background-color: #1e40af;
+    }
+
+    .about-us {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      padding: 50px;
+      border-radius: 10px;
+      background: linear-gradient(180deg, #fff,#3164F4 1000%);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      max-width: 1230px;
+      margin: 50px auto;
+    }
+
+    .about-us img {
+      max-width: 350px;
+      border-radius: 10px;
+      margin-left: -100px;
+    }
+
+    .about-us .about-content {
+      max-width: 500px;
+      text-align: left;
+    }
+
+    .about-us h1 {
+      font-size: 2.9rem;
+      color: #3164F4;
+      margin-bottom: 15px;
+      font-weight: bold;
+
+    }
+
+    .about-us p {
+      font-size: 1.3rem;
+      color: #555;
+      line-height: 1.5;
+      text-align: justify;
+      margin-right: -80px;
+    }
+
+    .gallery{
+      width: 1000px;
+      display: flex;
+      overflow-x: scroll;
+    }
+
+    .gallery div{
+      width: 100%;
+      display: grid;
+      grid-template-columns: auto auto auto;
+      grid-gap: 20px;
+      padding: 20px;
+      flex: none;
+    }
+
+    .gallery div img{
+      width: 100%;
+      filter: grayscale(0%);
+      transition: transform 0.5s;
+    }
+
+    .gallery::-webkit-scrollbar{
+      display: none;
+    }
+
+    .gallery-wrap{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      margin: 10% auto;
+    }
+
+    .gallery-wrap h3 {
+      position: absolute;
+      top: -70px; /* Sesuaikan jarak dari atas */
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #3164F4;
+    }
+
+    #backBtn, #nextBtn{
+      width: 50px;
+      cursor: pointer;
+      margin: 40px;
+    }
+
+    .gallery div img:hover{
+      filter: grayscale(0);
+      cursor: pointer;
+      transform: scale(1.1);
+    }
+
+          /* Styling for left and right buttons */
+      .gallery-wrap i {
+        font-size: 40px;
+        color: #3164F4;
+        cursor: pointer;
+        transition: transform 0.2s, color 0.3s;
+      }
+
+      .gallery-wrap i:hover {
+        color: #3164F4;
+        transform: scale(1.1);
+      }
+
+
+        .footer {
+            background-color:#3164F4;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            font-size: 1.2rem;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1600px;
+            margin: auto;
+            flex-wrap: wrap;
+            padding: 0 100px;
+            font-size: 1.3rem;
+        }
+        .footer div {
+            padding: 10px;
+        }
+        .footer-left {
+            text-align: left;
+            flex: 1;
+        }
+        .footer-right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            text-align: right;
+        }
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            text-align: right;
+            width: 100%;
+        }
+        .footer hr {
+            border: 0;
+            height: 1px;
+            background-color: white;
+            margin: 20px 0;
+        }
+        .footer a {
+            color: white;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer a {
+    font-size: 1.2rem;
 }
 
-.container {
-    max-width: 1400px;
-    margin-top: 35px;
-    margin-left: 70px;
-    margin-right: 70px;
-    padding: 50px;
-    position:relative; /* Set relative to position navigation buttons */
-    transform: translate(50px);
+.footer-contact span {
+    font-size: 1.2rem;
 }
 
-.about-us-text{
-    background-color: white;
-    padding: 50px;
-    margin-top: 10px;
+        /* Pastikan seluruh section berada di tengah */
+.container-service {
+    text-align: center;
+    max-width: 1200px;
+    margin: auto;
+    padding: 40px 20px;
 }
 
-.slider-container {
-    overflow: hidden;
-}
-
-.slides {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-}
-
-.slide {
-    width: 100%;
-    flex-shrink: 0;
-    display: flex;
-    justify-content: space-between; /* Align text and image */
-    align-items: center;
-    padding: 50px;
-    background-color: white;
-    border-radius: 8px;
-    position: relative; /* Position relative to center elements */
-}
-
-.about-us-text {
-    max-width: 600px;
-    text-align: left; /* Keep text aligned to the left */
-}
-
-.about-us-text h1 {
-    font-size: 45px;
-    color: #004aad;
+/* Styling untuk judul */
+.container-service h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #2C5ADC;
     margin-bottom: 20px;
-    font-weight: bold;
-    text-align: center;
 }
 
-.about-us-text p {
-    font-size: 18px;
-    line-height: 1.6;
-    color: #00bf63;
-    margin-bottom: 10px;
-    text-align: center;
-}
-
-.about-us img {
-    max-width: 500px;
-    height: auto;
-}
-
-/* Button styles */
-.button-container {
-    display: flex; /* Use flexbox to center the button */
-    justify-content: center; /* Center button horizontally */
-    margin-top: 40px; /* Space above button */
-    width: 100%; /* Ensure full width for centering */
-}
-
-.button {
-    padding: 7px 100px;
-    background-color: #284e95;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 18px;
-    transition: background-color 0.3s;
-}
-
-.button:hover {
-    background-color: #1e3c73;
-}
-
-/* Navigation style */
-.nav {
-    background-color: #284e95;
-    padding: 15px;
-}
-
-.nav ul {
-    list-style: none;
+/* Layout grid untuk memastikan tata letak responsif */
+.services {
     display: flex;
-    justify-content: space-around;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px 0;
 }
 
-.nav ul li {
-    color: white;
-}
-
-.nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-}
-
-.nav ul li a:hover {
-    text-decoration: underline;
-}
-
-/* Slide navigation buttons */
-.prev, .next {
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 40px; /* Set equal width and height */
-    height: 40px; /* Set equal width and height */
-    padding: 0; /* Remove padding */
-    color: white;
-    font-size: 18px;
-    background-color: #004aad;
-    border: none;
-    border-radius: 50%; /* Ensures circular shape */
-    transition: background-color 0.3s;
-    z-index: 1;
-    display: flex; /* Aligns content to center */
-    justify-content: center; /* Centers the arrow horizontally */
-    align-items: center; /* Centers the arrow vertically */
-}
-
-.prev:hover, .next:hover {
-    background-color: #7988D2;
-}
-
-.prev {
-    left: -15px; /* Shifted outside the container */
-}
-
-.next {
-    right: -12px; /* Shifted outside the container */
-    z-index: 1;
-}
-
-nav{
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    height: 100%;
-    left: 0;
-    background: white;
-    width: 90px;
-    overflow: hidden;
-    transition: width 0.2s linear;
-    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
-    z-index: 2;
-}
-.logo{
+/* Styling untuk setiap kartu layanan */
+.service-card {
+   background: linear-gradient(180deg, #fff, #3164F4 1000%);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    display:flex;
-    transition: all 0.5s ease;
-    margin: 10px 0 0 10px;
+    width: 350px;
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.3s ease-in-out;
 }
-.logo img{
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
+
+/* Efek hover untuk kartu */
+.service-card:hover {
+    transform: translateY(-5px);
 }
-.logo span{
+
+/* Gaya gambar dalam kartu */
+.service-card img {
+    max-width: 80%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+/* Gaya teks dalam kartu */
+.service-card h3 {
+    font-size: 1.3rem;
+    color: #3164F4;
     font-weight: bold;
-    padding: 0px;
-    font-size: 18px;
-    text-transform: uppercase;
+    margin-bottom: 10px;
 }
-a{
-    position: relative;
-    color: #004AAD;
-    font-size: 14px;
-    display: table;
-    width: 300px;
+
+.service-card p {
+    font-size: 1.1rem;
+    color: #3164F4;
+    line-height: 1.4;
+}
+
+/* Responsif untuk layar kecil */
+@media (max-width: 768px) {
+    .services {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .service-card {
+        width: 90%;
+    }
+}
+
+        
+        /* Collaborators Section */
+        .collaborators-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(1, 1, 1, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+            margin-bottom: 70px;
+            margin-top: 30px;
+        }
+        .collaborators-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+        }
+        .collaborators-grid img {
+            max-width: 250px;
+            height: auto;
+        }
+        
+        .container-collab p{
+          font-size: 1.5rem;
+          text-align: center;
+          color: #155ACA;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            color: #3164F4;
+            margin-bottom: 20px;
+            font-weight: bold;
+            display: block;
+            text-align: center;
+            padding-bottom: 5px;
+            margin-top: 50px; /* Added space above h2 */
+        }
+
+        .faq-title {
+            color: #3164F4;
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .faq-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            justify-content: center;
+            gap: 60px; /* Tambahkan jarak antar box */
+            padding: 30px;
+            max-width: 1100px; /* Batasi lebar agar tetap terpusat */
+            margin: 0 auto; /* Pusatkan container secara keseluruhan */
+        }
+
+
+        .faq-box {
+            background: white;
+            width: 350px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            justify-content: center;
+            text-align: center;
+            align-items: center;
+        }
+        .faq-box .faq-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+        .faq-question {
+            font-size: 16px;
+            margin: 10px 0;
+            color: #555;
+        }
+        .faq-answer {
+    background: #eef2ff;
+    border-radius: 5px;
     padding: 10px;
+    font-size: 14px;
+    color: #333;
+    text-align: center; /* Pusatkan teks */
+    display: flex; /* Gunakan flexbox */
+    justify-content: center; /* Pusatkan horizontal */
+    align-items: center; /* Pusatkan vertikal */
+    min-height: 50px; /* Berikan tinggi minimum agar tetap rapi */
 }
-.fas{
-    position: relative;
-    width: 70px;
-    height: 40px;
-    top: 14px;
-    font-size: 20px;
-    text-align: center;
-}
-.nav-item{
-    position: relative;
-    top: 12px;
-    margin-left: 25px;
-}
-.nav-item2{
-    position: relative;
-    top: 12px;
-    margin-left: 10px;
-}
-a:hover{
-    background: #eee;
-}
-nav:hover{
-    width: 280px;
-    transition: all 0.5s ease;
-}
-.logout{
-    position: absolute;
-    bottom: 0;
-}
-
-     /* Responsiveness for smaller screens */
-     @media (max-width: 768px) {
-        nav {
-            width: 70px; /* Smaller width for navigation */
+        .answer-button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            text-align: center;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            .services, .collaborators-grid {
+                flex-direction: column;
+            }
         }
 
-        nav:hover {
-            width: 180px; /* Adjust width when hovered */
-        }
-
-        .container {
-            margin-left: 20px;
-            margin-right: 20px;
-            padding: 20px; /* Adjust padding for smaller screens */
-            transform: translate(0); /* Center the container */
-        }
-
-        h1 {
-            font-size: 32px; /* Smaller font size for headings */
-        }
-
-        .input-group input, .grid-item input {
-            font-size: 14px; /* Reduce font size for inputs */
-            padding: 8px 8px; /* Adjust padding */
-        }
-
-        .button-group {
-            flex-direction: column; /* Stack buttons vertically */
-            align-items: stretch;
-        }
-
-        button {
-            width: 100%; /* Full width buttons */
-            margin: 10px 0; /* Add spacing between buttons */
-        }
-    }
-
-    @media (max-width: 480px) {
-        nav {
-            width: 60px; /* Even smaller width for very small screens */
-        }
-
-        nav:hover {
-            width: 150px; /* Adjust hover width */
-        }
-
-        .container {
-            padding: 15px; /* Smaller padding for very small screens */
-        }
-
-        h1 {
-            font-size: 24px; /* Further reduce heading size */
-        }
-
-        .input-group input, .grid-item input {
-            font-size: 12px; /* Smaller font size for inputs */
-        }
-    }
-
-    </style>
+  </style>
 </head>
-<body>
-
-    <!-- About Us Section with Slider -->
-    <div class="container">
-        <!-- Navigation buttons outside the about-us container -->
-        <button class="prev">&#10094;</button>
-        <button class="next">&#10095;</button>
-
-        <div class="about-us slider-container">
-            <div class="slides">
-                <!-- Slide 1 -->
-                <div class="slide">
-                    <div class="about-us-text">
-                        <h1>DENTAL<br>EDUCATION</h1>
-                        <p>Prediction of Student Academic <br>Performance in Pre-Clinical Dentistry</p>
-                        <div class="button-container"> <!-- Added button container -->
-                            <!-- <button class="button" id="loginButton">Login</button> Login Button -->
-                        </div>
-                    </div>
-                    <img src="/Asset/Logo Home.png" alt="Dental Education Image">
-                </div>
-
-                <!-- Slide 2 -->
-                <div class="slide">
-                    <div class="about-us-text">
-                        <h1>About Us</h1>
-                        <p>Hello There! Welcome to the Dental Education, where innovation meets excellence in Dental Education! Our mission is to revolutionize the way students engage with Dental Education Analytics, fostering a dynamic and supportive learning environment.</p>
-                        <div class="button-container"> <!-- Added button container -->
-                            <!-- <button class="button" id="moreButton">More</button> More Button -->
-                        </div>
-                    </div>
-                    <img src="/Asset/About.png" alt="Dental Education Image">
-                </div>
-    
-                <!-- Slide 3 -->
-                <!-- <div class="slide">
-                    <div class="about-us-text">
-                        <h1>Frequently Asked Question</h1>
-                        <ul style="list-style: none; padding: 0;">
-                            <li style="display: flex; justify-content: space-between; padding: 10px 20px; background-color: #f7f7f7; margin-bottom: 10px; border: 1px solid #dcdcdc; border-radius: 5px;">
-                                <span>Question 1</span>
-                                <span style="font-size: 20px; cursor: pointer;">+</span>
-                            </li>
-                            <li style="display: flex; justify-content: space-between; padding: 10px 20px; background-color: #f7f7f7; margin-bottom: 10px; border: 1px solid #dcdcdc; border-radius: 5px;">
-                                <span>Question 2</span>
-                                <span style="font-size: 20px; cursor: pointer;">+</span>
-                            </li>
-                            <li style="display: flex; justify-content: space-between; padding: 10px 20px; background-color: #f7f7f7; margin-bottom: 10px; border: 1px solid #dcdcdc; border-radius: 5px;">
-                                <span>Question 3</span>
-                                <span style="font-size: 20px; cursor: pointer;">+</span>
-                            </li>
-                            <li style="display: flex; justify-content: space-between; padding: 10px 20px; background-color: #f7f7f7; margin-bottom: 10px; border: 1px solid #dcdcdc; border-radius: 5px;">
-                                <span>Question 4</span>
-                                <span style="font-size: 20px; cursor: pointer;">+</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <img src="/Asset/FAQ.png" alt="Values Image">
-                </div> -->
-            </div>
-        </div>
-    </div>
+<body class="font-sans">
 
     <nav>
         <ul>
-            <li>
-                <a href="homeAdmin.html" class="logo">
-                    <img src="/Asset/Logo Home.png" alt="">
-                    <span class="nav-item">Hello Admin!</span>
-                </a>
-            </li>
-            <li><a href="information1Admin.html">
-                <i class="fas fa-graduation-cap"></i>
-                <span class="nav-item2">Grade Prediction</span>
-            </a></li>
-            <li><a href="information2Admin.html">
-                <i class="fas fa-upload"></i>
-                <span class="nav-item2">Upload</span>
-            </a></li>
-            <li><a href="resultAdmin.html">
-                <i class="fas fa-chart-line"></i>
-                <span class="nav-item2">Result Analytics</span>
-            </a></li>
-            <li><a href="hasilGradePredictionAdmin.html">
-                <i class="fas fa-chart-column"></i>
-                <span class="nav-item2">Result Grade Prediction</span>
-            </a></li>
-            <li><a href="hasilRepeatAdmin.html">
-                <i class="fas fa-chart-gantt"></i>
-                <span class="nav-item2">Result Repeat Paper</span>
-            </a></li>
-            <li><a href="RegisterAdmin.html">
-                <i class="fas fa-envelope"></i>
-                <span class="nav-item2">Invite Admin</span>
-            </a></li>
-            <li><a href="LandingPageAdmin.html" class="logout">
-                <i class="fas fa-sign-out-alt"></i>
-                <span class="nav-item2">Logout</span>
-            </a></li>
+          <li>
+            <a href="#" class="logo">
+              <img src="/Asset/Logo Home.png" alt="" />
+              <span class="nav-item">Hello Admin!</span>
+            </a>
+          </li>
+          <li>
+            <a href="information1Admin.html">
+              <i class="fas fa-graduation-cap"></i>
+              <span class="nav-item2">Grade Prediction</span>
+            </a>
+          </li>
+          <li>
+            <a href="information2Admin.html">
+              <i class="fas fa-upload"></i>
+              <span class="nav-item2">Upload</span>
+            </a>
+          </li>
+          <li>
+            <a href="hasilGradePredictionAdmin.html">
+              <i class="fas fa-chart-column"></i>
+              <span class="nav-item2">Result Grade Prediction</span>
+            </a>
+          </li>
+          <li>
+            <a href="hasilRepeatAdmin.html">
+              <i class="fas fa-chart-gantt"></i>
+              <span class="nav-item2">Result Repeat Paper</span>
+            </a>
+          </li>
+          <li>
+            <a href="resultAdmin.html">
+              <i class="fas fa-chart-line"></i>
+              <span class="nav-item2">Result Analytics</span>
+            </a>
+          </li>
+          <li>
+            <a href="RegisterAdmin.html">
+              <i class="fas fa-envelope"></i>
+              <span class="nav-item2">Invite Admin</span>
+            </a>
+          </li>
+          <li>
+            <a href="LandingPageAdmin.html" class="logout">
+              <i class="fas fa-sign-out-alt"></i>
+              <span class="nav-item2">Logout</span>
+            </a>
+          </li>
         </ul>
-    </nav>
+      </nav>
+  <!-- <nav class="navbar">
+    <a href="#">Information</a>
+    <a href="#">About</a>
+    <a href="#">Contact Us</a>
+    <a href="#">Feedback</a>
+  </nav> -->
 
-    <script>
-        const slides = document.querySelector('.slides');
-        const slide = document.querySelectorAll('.slide');
-        const prev = document.querySelector('.prev');
-        const next = document.querySelector('.next');
-        const loginButton = document.getElementById('loginButton'); // Get login button
-        const moreButton = document.getElementById('moreButton'); // Get more button
-        let index = 0;
+  <section class="hero-section container mx-auto">
+    <div class="hero-image">
+      <img src="/Asset/logo dental.png" alt="Illustration">
+    </div>
+    <div class="hero-content">
+      <h1 class="hero-title">Welcome to Precident-AI Platform</h1>
+      <p class="hero-description">Prediction of Academic Performance in Dentistry <br> using Artificial Intelligence.</p>
+      <!-- <a href="loginAdmin.html" class="hero-button">Get Started</a> -->
+    </div>
+  </section>                
 
-        function showSlide(n) {
-            if (n >= slide.length) {
-                index = 0;
-            } else if (n < 0) {
-                index = slide.length - 1;
-            }
-            slides.style.transform = `translateX(-${index * 100}%)`;
-        }
+  <section class="container-service">
+    <h1 class="text-center text-5xl font-bold text-blue-600 mt-12 mb-10 mr-700 ml-49">Our Services</h1>
+    <div class="services">
+        <div class="service-card">
+            <img src="/Asset/Early Risk Identification Logo.png" alt="Service 1">
+            <h3>Early Risk Identification</h3>
+            <p>Enables universities to detect potential academic issues early on.</p>
+        </div>
+        <div class="service-card">
+            <img src="/Asset/Machine Learning Optimization Logo.png" alt="Service 2">
+            <h3>Machine Learning Optimization</h3>
+            <p>Our system leverages machine learning algorithms to analyze student data.</p>
+        </div>
+        <div class="service-card">
+            <img src="/Asset/Improved Performance Academic Logo.png" alt="Service 3">
+            <h3>Improved Performance Academic</h3>
+            <p>By identifying risks earlier, students can receive better support.</p>
+        </div>
+    </div>
+</section>
 
-        next.addEventListener('click', () => {
-            index++;
-            showSlide(index);
-        });
 
-        prev.addEventListener('click', () => {
-            index--;
-            showSlide(index);
-        });
+  <section class="about-us">
+    <img src="/Asset/About Us Logo.png" alt="Stack of books with an apple">
+    <div class="about-content">
+      <h1>About Us</h1>
+      <p>We are committed to helping pre-clinical dental students succeed by offering predictive insights based on admission data and machine learning models. Our goal is to identify students who may need additional support and provide actionable recommendations for better academic outcomes.</p>
+    </div>
+  </section>
+  <div class="gallery-wrap">
+    <h3>Our Team</h3>
+    <i id="backBtn" class="fa-solid fa-circle-arrow-left"></i>
+    <div class="gallery">
+      <div>
+        <span><img src="/Asset/7.png"></span>
+        <span><img src="/Asset/5.png"></span>
+        <span><img src="/Asset/6.png"></span>
+      </div>
+      <div>
+        <span><img src="/Asset/8.png"></span>
+        <span><img src="/Asset/4.png"></span>
+        <span><img src="/Asset/7.png"></span>
+      </div>
+      <div>
+        <span><img src="/Asset/1 (1).png"></span>
+        <span><img src="/Asset/2 (1).png"></span>
+        <span><img src="/Asset/3 (1).png"></span>
+      </div>
+    </div>
+    <i id="nextBtn" class="fa-solid fa-circle-arrow-right"></i>
+  </div>
+  
+   <!-- Our Collaborators Section -->
+   <section class="container-collab">
+    <h2>Our Collaborators</h2>
+    <p>A special thank you to all our partners who have contributed to making this project a reality</p>
+    <div class="collaborators-container">
+        <div class="collaborators-grid">
+            <img src="/Asset/image 1.png" alt="Collaborator 1" class="left">
+            <img src="/Asset/image 2.png" alt="Collaborator 2" class="right">
+            <img src="/Asset/iium-logo.png" alt="Collaborator 3" class="left">
+            <img src="/Asset/KOD Logo 2.png" alt="Collaborator 4" class="right">
+        </div>
+    </div>
+  </section>
+  
+  <h1 class="faq-title">Frequently Asked Questions</h1>
+      <div class="faq-container">
+          <div class="faq-box">
+              <div class="faq-title">Questions</div>
+              <div class="faq-question">How does Precident-AI work?</div>
+              <button class="answer-button">Answer</button>
+              <div class="faq-answer">Precident-AI uses machine learning models to analyze students' academic data. By inputting relevant data, the system predicts whether a student will pass or need to retake a course.</div>
+          </div>
+          <div class="faq-box">
+              <div class="faq-title">Questions</div>
+              <div class="faq-question">What data does Precident-AI analyze?</div>
+              <button class="answer-button">Answer</button>
+              <div class="faq-answer">The system analyzes attendance, grades, and participation metrics to generate predictions.</div>
+          </div>
+          <div class="faq-box">
+              <div class="faq-title">Questions</div>
+              <div class="faq-question">Is Precident-AI accurate?</div>
+              <button class="answer-button">Answer</button>
+              <div class="faq-answer">Precident-AI boasts an accuracy rate of over 90% based on historical academic data.</div>
+          </div>
+          <div class="faq-box">
+              <div class="faq-title">Questions</div>
+              <div class="faq-question">Can teachers override AI predictions?</div>
+              <button class="answer-button">Answer</button>
+              <div class="faq-answer">Yes, teachers can review and override AI predictions based on additional insights.</div>
+          </div>
+          <div class="faq-box">
+              <div class="faq-title">Questions</div>
+              <div class="faq-question">Does Precident-AI store student data?</div>
+              <button class="answer-button">Answer</button>
+              <div class="faq-answer">All student data is securely stored and encrypted to ensure privacy and compliance.</div>
+          </div>
+          <div class="faq-box">
+              <div class="faq-title">Questions</div>
+              <div class="faq-question">How can students access their predictions?</div>
+              <button class="answer-button">Answer</button>
+              <div class="faq-answer">Students can log into the Precident-AI portal to view their academic predictions.</div>
+          </div>
+      </div>
+  
+  <footer class="footer">
+    <div class="footer-content">
+        <div class="footer-left" style="margin-left: 80px;">
+            <strong>International Islamic University Malaysia</strong><br>
+            P.O. Box 10, 50728 Kuala Lumpur
+        </div>
+        <div class="footer-right" style="margin-right: 80px;">
+            <strong>Contact Us</strong>
+            <div class="footer-contact">
+                <span>Phone : (+603) 6421 6421</span>
+                <span>Fax : (+603) 6421 4053</span>
+                <span>Email : <a href="mailto:webmaster@iium.edu.my">webmaster@iium.edu.my</a></span>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div>
+        &copy; <span id="year"></span> <strong>Academic Performance Prediction Platform</strong>. All rights reserved.
+    </div>
+  </footer>
 
-        // Event listener for Login button
-        loginButton.addEventListener('click', () => {
-            window.location.href = 'Logsig.html'; // Ganti 'login.html' dengan URL yang sesuai
-        });
 
-        // Event listener for More button
-        moreButton.addEventListener('click', () => {
-            window.location.href = 'more.html'; // Ganti 'more.html' dengan URL yang sesuai
-        });
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
 
-        showSlide(index);
-    </script>
-    
+document.getElementById("year").textContent = new Date().getFullYear();
+     let scrollContainer = document.querySelector(".gallery");
+      let backBtn = document.querySelector("#backBtn");
+      let nextBtn = document.querySelector("#nextBtn");
 
-    
+      if (scrollContainer && nextBtn && backBtn) {
+          scrollContainer.addEventListener("wheel", (evt) => {
+              evt.preventDefault();
+              scrollContainer.scrollLeft += evt.deltaY;
+              scrollContainer.style.scrollBehavior = "auto";
+          });
+
+          nextBtn.addEventListener("click", () => {
+              scrollContainer.style.scrollBehavior = "smooth";
+              scrollContainer.scrollLeft += 900;
+          });
+
+          backBtn.addEventListener("click", () => {
+              scrollContainer.style.scrollBehavior = "smooth";
+              scrollContainer.scrollLeft -= 900;
+          });
+      } else {
+          console.error("Elemen tidak ditemukan. Periksa querySelector.");
+      }
+
+
+  </script>
+
 </body>
 </html>

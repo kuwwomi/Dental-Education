@@ -6,6 +6,7 @@
     <title>Information</title>
     <!-- <link rel="stylesheet" href="anatomy.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
@@ -59,7 +60,7 @@ nav {
 
 a {
     position: relative;
-    color: #004AAD;
+    color: #155ACA;
     font-size: 14px;
     display: table;
     width: 300px;
@@ -156,7 +157,7 @@ h1 {
 }
 
 .accordion-header {
-    background-color: #004AAD;
+    background-color: #155ACA;
     color: white;
     padding: 10px;
     text-align: left;
@@ -176,7 +177,7 @@ h1 {
 
 
 .accordion-header:hover {
-    background-color: #004AAD;
+    background-color: #155ACA;
 }
 
 .accordion-content {
@@ -198,7 +199,7 @@ h1 {
 .image-section {
     position: absolute;
     top: 50%;
-    right: 5%;
+    right: -15%;
     transform: translate(0, -50%);
     /* flex: 1;
     max-width: 50%; */
@@ -207,7 +208,7 @@ h1 {
 }
 
 .image-section img {
-    width: 75%;
+    width: 35%;
     border-radius: 5px;
 }
 
@@ -227,7 +228,7 @@ h1 {
 .start-prediction {
     display: block; /* Mengubah tombol menjadi elemen blok */
     margin: 10px auto 0; /* Jarak 10px dari bawah gambar, dan otomatis terpusat */
-    background-color: #004AAD;
+    background-color: #155ACA;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -307,7 +308,7 @@ h1 {
     justify-content: space-between;
     font-size: 16px;
     color: #ffffff; /* White text */
-    background-color: #004AAD; /* Blue background */
+    background-color: #155ACA; /* Blue background */
     text-decoration: none; /* Remove underline */
     border-radius: 5px; /* Rounded corners */
     transition: background-color 0.3s ease, transform 0.2s ease;
@@ -325,7 +326,7 @@ h1 {
     <nav>
         <ul>
           <li>
-            <a href="homeAdmin.html" class="logo">
+            <a href="#" class="logo">
               <img src="/Asset/Logo Home.png" alt="" />
               <span class="nav-item">Hello Admin!</span>
             </a>
@@ -438,13 +439,17 @@ h1 {
                 </div>
             </div>
             <div class="image-section"> <!-- Added image section -->
-                <img src="/Asset/Looking Information.png" alt="Collaboration">
+                <img src="/Asset/information.png" alt="Collaboration">
                 <button class="start-prediction" id="startPrediction">Start Prediction</button> <!-- Start Prediction Button -->
             </div>
         </div>
     </div>
 
     <script>
+
+        // Check if the user is logged in as admin
+        const token = localStorage.getItem("auth-token-admin");
+
         // Fungsi untuk toggle accordion
         function toggleAccordion(button) {
             const content = button.nextElementSibling;
@@ -472,6 +477,39 @@ h1 {
         document.getElementById('startPrediction').addEventListener('click', () => {
             window.location.href = 'uploadAdmin.html'; // Ganti dengan URL tujuan Anda
         });
+
+
+        document.querySelector(".logout").addEventListener("click", (e) => {
+        e.preventDefault(); // Mencegah tindakan default
+
+        // Tampilkan konfirmasi menggunakan Swal.fire
+        Swal.fire({
+          title: "Are you sure?",
+          text: "You will be logged out and redirected to the login page.",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, logout",
+          cancelButtonText: "No, cancel",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // Hapus token dari localStorage
+            localStorage.removeItem("auth-token-admin");
+
+            // Tampilkan pesan sukses
+            Swal.fire({
+              icon: "success",
+              title: "Logged Out",
+              text: "You have been successfully logged out.",
+            }).then(() => {
+              // Redirect ke halaman login
+              window.location.href = "LandingPageAdmin.html";
+            });
+          }
+        });
+      });
+
     </script>
 </body>
 </html>
